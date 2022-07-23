@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/manually-command', function() {    
-    Artisan::call('vendor:publish --provider="ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider"');
+Route::get('/cache-clear', function() {    
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
     Artisan::call('route:clear');
     Artisan::call('config:clear');
-    dd('Sent Manually.');
+    dd('Cache Clear.');
 });
 
 Route::group(['namespace' => 'Auth'], function() {

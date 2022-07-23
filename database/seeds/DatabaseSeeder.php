@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call(CountryTableSeeder::class);
+        $this->call(SettingTableSeeder::class);
         
         Admin::firstOrCreate([
             'email' => 'jahidmahmud78@gmail.com'
