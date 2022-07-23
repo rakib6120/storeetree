@@ -77,7 +77,9 @@
                 </div><!-- end header_bottom-->
             </div>
 
-            @yield('content')
+            <div id="app">
+                @yield('content')
+            </div>
 
             <div class="footer">
                 <div class="footer_top">
