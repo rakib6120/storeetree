@@ -1,0 +1,46 @@
+.sidebar-menu .treeview-menu {
+    padding-left:10px !important;
+}
+
+.paginatorHide{
+    display:none !important;
+}
+
+
+.error-message {
+    color: #f11;
+}
+
+.report_table_total{
+    background-color: #e8e8e8 !important;
+}
+
+.message_history_car_owner {
+    background-color: #f7f7f7;
+}
+
+.message_history_supplier {
+    background-color: #d2d6de;
+}
+
+
+.breadcrumb{
+    display: none !important;
+}
+
+.sub-total li {
+    list-style: none;
+    text-align: left;
+}
+.sub-total {
+    padding: 0;
+}
+
+
+.scroll-block{
+    height: 100% !important;
+}
+/*This is only for ABCRadio*/
+/*.content-wrapper {
+    min-height: 800px !important;
+}*/

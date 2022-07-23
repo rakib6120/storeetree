@@ -1,0 +1,23 @@
+.blog_info_top span { 
+  margin-left: 0px;
+}
+
+.select_common .chosen-container .chosen-results li { 
+  text-transform: none;
+}
+
+
+.fm_tree_child_row .ft_parents_col.single-child:last-child {
+    margin-right: 0 !important;
+}
+
+.fm_tree_child_row .ft_parents_col.single-child:first-child {
+    margin-left: 0 !important;
+}
+
+.fm_tree_child_row .ft_parents_col.single-child {
+    display: inline-block;
+}
+.grand_children_row.grand_children_row_single {
+    display: block;
+}
