@@ -63,6 +63,7 @@
 </div><!--step_section-->
 
 <div class="video_content">
+        
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -76,29 +77,24 @@
             <div class="col-xs-12">
                 <div class="video_cnp_wrapper">
                     <div class="video_rc_container">
-                        <div id="startButton" class="btn btn-success" style="display:none"></div>
-                        <video id="preview" width="160" height="120" autoplay muted></video><br/><br/>
-                        <div id="stopButton" class="btn btn-danger"  style="display:none;"> Stop </div>
-                        <div class="video_recorder_wrapper" id="recorded" style="display:none">
+                        <div class="video_recorder_wrapper">
                             <div class="qs_top_block">
                                 <p>What is the happiest moment of your life and why? What is the happiest moment of your life and why? What is the happiest moment of your life and why?</p>
                             </div><!--qs_top_block-->
                             <div class="video_recor_area">
-                                <video id="recording" width="160" height="120" controls></video><br/><br/>
+                                <img src="images/videobg.jpg" alt="" />
                             </div><!--video_recor_area-->
-                            <meta name="csrf-token" content="{{csrf_token()}}">
-                            <input type="hidden" name="question_id" id="question_id" />
-                            <!--<div class="record_icon"><span>REC</span></div>-->
+                            <div class="record_icon"><span>REC</span></div>
                             <div class="rc_button_group_bottom">
-<!--                                <div class="player_button_left">
+                                <div class="player_button_left">
                                     <button class="btn_pause"></button>
                                     <button class="btn_play"></button>
                                     <button class="btn_stop"></button>
-                                </div>player_button_left-->
+                                </div><!--player_button_left-->
                                 <div class="recorder_review_button">
                                     <button class="btn_review">Review</button>
                                     <button class="btn_re-record" data-toggle="modal" data-target="#confirm_popup_1">Re-record</button>
-                                    <a class="btn btn-primary" id="downloadButton" data-url="{{ route('create-your-story.step-4.store')}}">Accept</a>
+                                    <button class="btn_accept">Accept</button>
                                 </div><!--recorder_review_button-->
                             </div><!--rc_button_group_bottom-->
                         </div><!--video_recorder_wrapper-->
@@ -119,12 +115,12 @@
                                 </div><!--vb_qs_wrapper-->
                             </div><!--vd_sidebar_inner-->
                         </div><!--vd_sidebar-->
-
+                        
                     </div><!--video_rc_container-->
                 </div><!--video_wrapper-->
             </div>
         </div>
-        <div class="row" style="display:none">
+        <div class="row">
             <div class="col-xs-12 padding_cs_1">
                 <div class="step_bottom_section">
                     <div class="step_next"><button type="button" name="" class="step_next_btn" >Next</button></div><!--step_next-->
@@ -132,6 +128,7 @@
             </div>
         </div>
     </div>
+    
 </div><!--video_content-->
 
 <div class="modal fade modal-vcenter modal_small" id="confirm_popup_1" role="dialog">
@@ -167,6 +164,7 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript">
 
     $(document).on('click', '.bookmark-fill', function (event) {
