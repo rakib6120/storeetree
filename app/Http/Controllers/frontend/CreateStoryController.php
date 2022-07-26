@@ -130,7 +130,7 @@ class CreateStoryController extends BaseController
 
 
         $messages = [
-//            'title.required' => 'Title is required',
+            // 'title.required' => 'Title is required',
         ];
 
         $this->validate($request, $rules, $messages);

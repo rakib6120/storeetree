@@ -77,7 +77,9 @@
             <div class="col-xs-12">
                 <div class="video_cnp_wrapper">
                     <div class="video_rc_container">
-                        <video-recorder></video-recorder>
+                        <video-recorder
+                            upload_url="{{ route('video.store') }}"
+                        ></video-recorder>
 
                         <div class="vd_sidebar">
                             <div class="vd_sidebar_inner">

@@ -5934,7 +5934,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['uploadUrl'],
+  props: ['upload_url'],
   data: function data() {
     return {
       player: '',
@@ -6022,7 +6022,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('video', data, data.name);
       this.submitText = "Uploading " + data.name;
       this.player.record().stopDevice();
-      fetch(this.uploadUrl, {
+      fetch(this.upload_url, {
         method: 'POST',
         body: formData,
         headers: {

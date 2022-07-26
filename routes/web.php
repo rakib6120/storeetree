@@ -62,7 +62,9 @@ Route::group(['namespace' => 'frontend'], function() {
     Route::get('create-your-story/step-3', 'CreateStoryController@step3')->name('create-your-story.step-3');
     Route::post('create-your-story/step-3', 'CreateStoryController@step3Store');
     Route::get('view-story', 'CreateStoryController@show')->name('view-story');
-        Route::post('create-your-story/step-4/store', 'CreateStoryController@step4Store')->name('create-your-story.step-4.store');
+    Route::post('create-your-story/step-4/store', 'CreateStoryController@step4Store')->name('create-your-story.step-4.store');
+
+    Route::post('upload/video', 'VideoRecordingController@store')->name('video.store');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('profile', 'ProfileController@index')->name('profile');
