@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\Config;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Illuminate\Support\Facades\Auth;
 
 class CreateStoryController extends BaseController
 {
@@ -162,25 +164,29 @@ class CreateStoryController extends BaseController
         if(!$cart) return redirect()->route('create-your-story.step-1');
         $questions = Question::whereIn('id', $cart['questions'])->orderBy('sort', 'ASC')->get();
 
-        $storyItems = Session::get('storyItems');
+        $storyItems       = collect(Session::get('storyItems'));
+        $current_question = [];
         $current = false;
+
         foreach($questions as $key=>$question) {
-            $questions[$key]->class = '';
+            $question->class = '';
+
             if($storyItems) {
-                if(in_array($question->id, $storyItems)) {
-                    $questions[$key]->class = 'qs_complete';
+                if(in_array($question->id, $storyItems->pluck('question_id')->toArray())) {
+                    $question->class = 'qs_complete';
                 }
             }
 
             if(!$current) {
                 if(!$question->class) {
-                    $questions[$key]->class = 'qs_qurrent';
+                    $question->class = 'qs_qurrent';
+                    $current_question = $question;
                     $current = true;
                 }
             }
         }
         
-        return view('frontend.story.step4', compact('cart', 'questions', 'storyItems'));
+        return view('frontend.story.step4', compact('cart', 'questions', 'current_question', 'storyItems'));
     }
 
     /**

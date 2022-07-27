@@ -1,7 +1,7 @@
 <template>
     <div class="video_recorder_wrapper">
         <div class="qs_top_block">
-            <p>What is the happiest moment of your life and why? What is the happiest moment of your life and why? What is the happiest moment of your life and why?</p>
+            <p>{{ currentQuestion.title }}</p>
         </div><!--qs_top_block-->
         <div class="video_recor_area">
             <video id="myVideo" class="video-js vjs-default-skin">
@@ -19,9 +19,10 @@
                 <button class="btn_play" v-if="!isStartRecording" @click="startRecording()"></button>
                 <button class="btn_pause" v-if="!isPauseDisabled" @click="pauseRecording()"></button>
                 <button class="btn_play" v-if="!isResumeDisabled" @click="resumeRecording()"></button>
+                <button class="btn_stop" v-if="!isStopRecording" @click="stopRecording()"></button>
             </div><!--player_button_left-->
             <div class="recorder_review_button">
-                <button class="btn_re-record" data-toggle="modal" data-target="#retake-video" ref="retakeVideo">Re-record</button>
+                <button class="btn_re-record" :disabled="isRetakeDisabled" data-toggle="modal" data-target="#retake-video" ref="retakeVideo">Re-record</button>
                 <button class="btn_accept" @click="submitVideo()" :disabled="isSaveDisabled">{{ submitText }}</button>
             </div><!--recorder_review_button-->
         </div><!--rc_button_group_bottom-->
@@ -72,13 +73,14 @@ import RecordRTC from 'recordrtc'
 import Record from 'videojs-record/dist/videojs.record.js'
 import FFmpegjsEngine from 'videojs-record/dist/plugins/videojs.record.ffmpegjs.js';
 export default {
-    props: ['upload_url'],
+    props: ['upload_url', 'question'],
     data() {
         return {
             player: '',
             retake: 0,
             isSaveDisabled: true,
             isStartRecording: false,
+            isStopRecording: true,
             isResumeDisabled: true,
             isPauseDisabled: true,
             isRetakeDisabled: true,
@@ -99,14 +101,17 @@ export default {
                         pip: false,
                         audio: true,
                         video: true,
-                        maxLength: 10,
+                        maxLength: 60,
                         debug: true
                     }
                 }
-            }
+            },
+
+            currentQuestion: {}
         }
     },
     mounted() {
+        this.currentQuestion = JSON.parse(this.question);
         this.player = videojs('myVideo', this.options, () => {
             // print version information at startup
             let msg = 'Using video.js ' + videojs.VERSION +
@@ -128,12 +133,14 @@ export default {
         // user clicked the record button and started recording
         this.player.on('startRecord', () => {
             this.isPauseDisabled = false;
+            this.isStopRecording = false;
             console.log('started recording!');
         });
         // user completed recording and stream is available
         this.player.on('finishRecord', () => {
             this.isSaveDisabled = false;
             this.isStartRecording = true;
+            this.isStopRecording = true;
             this.isResumeDisabled = true;
             this.isPauseDisabled = true;
             this.player.record().stopDevice();
@@ -146,14 +153,16 @@ export default {
     methods: {
         startRecording() {
             this.isStartRecording = true;
+            this.isRetakeDisabled = false;
             this.player.record().getDevice();
         },
         submitVideo() {
             this.isSaveDisabled = true;
-            this.isRetakeDisabled = true;
             let data = this.player.recordedData;
             let formData = new FormData();
             formData.append('video', data, data.name);
+            formData.append('question_id', this.currentQuestion.id);
+
             this.submitText = "Uploading "+data.name;
             this.player.record().stopDevice();
 
@@ -167,6 +176,7 @@ export default {
                 success => {
                     console.log('recording upload complete.');
                     this.submitText = "Upload Complete";
+                    window.location.reload();
                 }
             ).catch(
                 error =>{
@@ -185,9 +195,15 @@ export default {
             this.isResumeDisabled = false;
             this.player.record().pause();
         },
+        stopRecording() {
+            this.isSaveDisabled = true;
+            this.isStartRecording = true;
+            this.isResumeDisabled = true;
+            this.isPauseDisabled = true;
+            this.player.record().stop();
+        },
         retakeVideo() {
             this.isSaveDisabled = true;
-            this.isRetakeDisabled = true;
             this.isStartRecording = true;
             this.isResumeDisabled = true;
             this.isPauseDisabled = false;

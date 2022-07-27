@@ -5926,6 +5926,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5934,13 +5935,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['upload_url'],
+  props: ['upload_url', 'question'],
   data: function data() {
     return {
       player: '',
       retake: 0,
       isSaveDisabled: true,
       isStartRecording: false,
+      isStopRecording: true,
       isResumeDisabled: true,
       isPauseDisabled: true,
       isRetakeDisabled: true,
@@ -5961,16 +5963,18 @@ __webpack_require__.r(__webpack_exports__);
             pip: false,
             audio: true,
             video: true,
-            maxLength: 10,
+            maxLength: 60,
             debug: true
           }
         }
-      }
+      },
+      currentQuestion: {}
     };
   },
   mounted: function mounted() {
     var _this = this;
 
+    this.currentQuestion = JSON.parse(this.question);
     this.player = (0,video_js__WEBPACK_IMPORTED_MODULE_2__["default"])('myVideo', this.options, function () {
       // print version information at startup
       var msg = 'Using video.js ' + video_js__WEBPACK_IMPORTED_MODULE_2__["default"].VERSION + ' with videojs-record ' + video_js__WEBPACK_IMPORTED_MODULE_2__["default"].getPluginVersion('record') + ' and recordrtc ' + (recordrtc__WEBPACK_IMPORTED_MODULE_4___default().version);
@@ -5991,12 +5995,14 @@ __webpack_require__.r(__webpack_exports__);
 
     this.player.on('startRecord', function () {
       _this.isPauseDisabled = false;
+      _this.isStopRecording = false;
       console.log('started recording!');
     }); // user completed recording and stream is available
 
     this.player.on('finishRecord', function () {
       _this.isSaveDisabled = false;
       _this.isStartRecording = true;
+      _this.isStopRecording = true;
       _this.isResumeDisabled = true;
       _this.isPauseDisabled = true;
 
@@ -6010,16 +6016,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     startRecording: function startRecording() {
       this.isStartRecording = true;
+      this.isRetakeDisabled = false;
       this.player.record().getDevice();
     },
     submitVideo: function submitVideo() {
       var _this2 = this;
 
       this.isSaveDisabled = true;
-      this.isRetakeDisabled = true;
       var data = this.player.recordedData;
       var formData = new FormData();
       formData.append('video', data, data.name);
+      formData.append('question_id', this.currentQuestion.id);
       this.submitText = "Uploading " + data.name;
       this.player.record().stopDevice();
       fetch(this.upload_url, {
@@ -6031,6 +6038,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (success) {
         console.log('recording upload complete.');
         _this2.submitText = "Upload Complete";
+        window.location.reload();
       })["catch"](function (error) {
         console.error('an upload error occurred!');
         _this2.submitText = "Upload Failed";
@@ -6046,9 +6054,15 @@ __webpack_require__.r(__webpack_exports__);
       this.isResumeDisabled = false;
       this.player.record().pause();
     },
+    stopRecording: function stopRecording() {
+      this.isSaveDisabled = true;
+      this.isStartRecording = true;
+      this.isResumeDisabled = true;
+      this.isPauseDisabled = true;
+      this.player.record().stop();
+    },
     retakeVideo: function retakeVideo() {
       this.isSaveDisabled = true;
-      this.isRetakeDisabled = true;
       this.isStartRecording = true;
       this.isResumeDisabled = true;
       this.isPauseDisabled = false;
@@ -80634,9 +80648,11 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "video_recorder_wrapper" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "qs_top_block" }, [
+      _c("p", [_vm._v(_vm._s(_vm.currentQuestion.title))]),
+    ]),
     _vm._v(" "),
-    _vm._m(1),
+    _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "rc_button_group_bottom" }, [
       _c("div", { staticClass: "player_button_left" }, [
@@ -80672,6 +80688,17 @@ var render = function () {
               },
             })
           : _vm._e(),
+        _vm._v(" "),
+        !_vm.isStopRecording
+          ? _c("button", {
+              staticClass: "btn_stop",
+              on: {
+                click: function ($event) {
+                  return _vm.stopRecording()
+                },
+              },
+            })
+          : _vm._e(),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "recorder_review_button" }, [
@@ -80680,7 +80707,11 @@ var render = function () {
           {
             ref: "retakeVideo",
             staticClass: "btn_re-record",
-            attrs: { "data-toggle": "modal", "data-target": "#retake-video" },
+            attrs: {
+              disabled: _vm.isRetakeDisabled,
+              "data-toggle": "modal",
+              "data-target": "#retake-video",
+            },
           },
           [_vm._v("Re-record")]
         ),
@@ -80714,10 +80745,10 @@ var render = function () {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _vm._m(3),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("div", { staticClass: "row padding_gap_3" }, [
                   _c("div", { staticClass: "col-xs-6 col-sm-6 col-md-6" }, [
@@ -80738,7 +80769,7 @@ var render = function () {
                     ]),
                   ]),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _vm._m(3),
                 ]),
               ]),
             ]),
@@ -80749,18 +80780,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "qs_top_block" }, [
-      _c("p", [
-        _vm._v(
-          "What is the happiest moment of your life and why? What is the happiest moment of your life and why? What is the happiest moment of your life and why?"
-        ),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

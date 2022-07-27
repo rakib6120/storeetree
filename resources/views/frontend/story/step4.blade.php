@@ -79,6 +79,7 @@
                     <div class="video_rc_container">
                         <video-recorder
                             upload_url="{{ route('video.store') }}"
+                            question='@json($current_question)'
                         ></video-recorder>
 
                         <div class="vd_sidebar">
