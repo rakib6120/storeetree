@@ -79,7 +79,7 @@
                     <div class="video_rc_container">
                         <video-recorder
                             upload_url="{{ route('video.store') }}"
-                            question='@json($current_question)'
+                            question='@json($currentQuestion)'
                         ></video-recorder>
 
                         <div class="vd_sidebar">
@@ -88,16 +88,23 @@
                                 <div class="vb_qs_wrapper">
                                     <div class="vb_qs_scroll">
                                         <ul class="scroll_block">
+                                            @php $next = true; @endphp
                                             @foreach($questions as $question)
-                                                @if ($question->class === "qs_complete")
+                                                @if ($question->class === "qs_complete" || $question->class === "qs_complete qs_qurrent")
                                                     <li class="{{ $question->class }}">
                                                         <a href="{{ route('create-your-story.step-4.show', $question->id) }}" class="bookmark-fill">{{ $question->title }}</a>
                                                     </li>
                                                     @continue
+                                                @elseif($next)
+                                                    @php $next = false; @endphp
+                                                    <li class="{{ $question->class }}">
+                                                        <a href="{{ route('create-your-story.step-4') }}" class="bookmark-fill">{{ $question->title }}</a>
+                                                    </li>
+                                                @else
+                                                    <li class="{{ $question->class }}">
+                                                        <a href="javascript:void(0)" class="bookmark-fill" style="cursor: default">{{ $question->title }}</a>
+                                                    </li>
                                                 @endif
-                                                <li class="{{ $question->class }}">
-                                                    <a href="javascript:void(0)" class="bookmark-fill">{{ $question->title }}</a>
-                                                </li>
                                             @endforeach
                                         </ul>
                                     </div><!--vb_qs_scroll-->

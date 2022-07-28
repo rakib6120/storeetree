@@ -44,5 +44,9 @@ class VideoRecordingController extends Controller
         }
 
         Session::put('storyItems', $storyItems);
+
+        return response()->json([
+            "msg" => 'Successfully uploaded.'
+        ], 200);
     }
 }

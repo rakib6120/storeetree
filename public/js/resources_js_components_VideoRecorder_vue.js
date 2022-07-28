@@ -5949,6 +5949,7 @@ __webpack_require__.r(__webpack_exports__);
       submitText: 'Accept',
       options: {
         controls: true,
+        autoplay: true,
         bigPlayButton: false,
         controlBar: {
           deviceButton: false,
@@ -5979,7 +5980,12 @@ __webpack_require__.r(__webpack_exports__);
       // print version information at startup
       var msg = 'Using video.js ' + video_js__WEBPACK_IMPORTED_MODULE_2__["default"].VERSION + ' with videojs-record ' + video_js__WEBPACK_IMPORTED_MODULE_2__["default"].getPluginVersion('record') + ' and recordrtc ' + (recordrtc__WEBPACK_IMPORTED_MODULE_4___default().version);
       video_js__WEBPACK_IMPORTED_MODULE_2__["default"].log(msg);
-    }); // error handling
+    });
+
+    if (this.currentQuestion.video) {
+      this.player.src("/".concat(this.currentQuestion.video));
+    } // error handling
+
 
     this.player.on('deviceReady', function () {
       _this.player.record().start();
@@ -6035,9 +6041,15 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-      }).then(function (success) {
-        console.log('recording upload complete.');
-        _this2.submitText = "Upload Complete";
+      }).then(function (res) {
+        if (res.status === 200) {
+          console.log('recording upload complete.');
+          _this2.submitText = "Upload Complete";
+          window.location.reload();
+        } else {
+          console.error('an upload error occurred!');
+          _this2.submitText = "Upload Failed";
+        }
       })["catch"](function (error) {
         console.error('an upload error occurred!');
         _this2.submitText = "Upload Failed";

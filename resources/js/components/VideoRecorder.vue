@@ -87,6 +87,7 @@ export default {
             submitText: 'Accept',
             options: {
                 controls: true,
+                autoplay: true,
                 bigPlayButton: false,
                 controlBar: {
                     deviceButton: false,
@@ -119,6 +120,11 @@ export default {
                 ' and recordrtc ' + RecordRTC.version;
             videojs.log(msg);
         });
+
+        if (this.currentQuestion.video) {
+            this.player.src(`/${this.currentQuestion.video}`);
+        }
+
         // error handling
         this.player.on('deviceReady', () => {
             this.player.record().start();
@@ -173,9 +179,15 @@ export default {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             }).then(
-                success => {
-                    console.log('recording upload complete.');
-                    this.submitText = "Upload Complete";
+                res => {
+                    if (res.status === 200) {
+                        console.log('recording upload complete.');
+                        this.submitText = "Upload Complete";
+                        window.location.reload();
+                    } else {
+                        console.error('an upload error occurred!');
+                        this.submitText = "Upload Failed";
+                    }
                 }
             ).catch(
                 error =>{

@@ -164,29 +164,34 @@ class CreateStoryController extends BaseController
         if(!$cart) return redirect()->route('create-your-story.step-1');
         $questions = Question::whereIn('id', $cart['questions'])->orderBy('sort', 'ASC')->get();
 
-        $storyItems       = collect(Session::get('storyItems'));
-        $current_question = [];
-        $current = false;
+        $storyItems         = collect(Session::get('storyItems'));
+        $currentQuestion    = [];
+        $current            = false;
+        $totalStoryUploaded = 0;
 
-        foreach($questions as $key=>$question) {
-            $question->class = '';
-
+        foreach($questions as $key => $question) {
             if($storyItems) {
                 if(in_array($question->id, $storyItems->pluck('question_id')->toArray())) {
                     $question->class = 'qs_complete';
+                    $totalStoryUploaded++;
                 }
             }
 
             if(!$current) {
                 if(!$question->class) {
-                    $question->class = 'qs_qurrent';
-                    $current_question = $question;
-                    $current = true;
+                    $question->class    = 'qs_qurrent';
+                    $currentQuestion    = $question;
+                    $current            = true;
+                    $totalStoryUploaded = 0;
                 }
             }
         }
-        
-        return view('frontend.story.step4', compact('cart', 'questions', 'current_question', 'storyItems'));
+
+        if (count($questions) === $totalStoryUploaded) {
+            return redirect()->route('create-your-story.step-4.show', $questions[0]->id);
+        }
+
+        return view('frontend.story.step4', compact('cart', 'questions', 'currentQuestion', 'storyItems'));
     }
     public function step4Preview($id) {
         $cart = Session::get('cart');
@@ -198,12 +203,10 @@ class CreateStoryController extends BaseController
             abort(404);    
         }
 
-        $current_question = [];
-        $current = false;
+        $currentQuestion = [];
+        $current         = false;
 
         foreach($questions as $key=>$question) {
-            $question->class = '';
-
             if($storyItems) {
                 if(in_array($question->id, $storyItems->pluck('question_id')->toArray())) {
                     $question->class = 'qs_complete';
@@ -212,15 +215,15 @@ class CreateStoryController extends BaseController
 
             if(!$current) {
                 if($question->id == $id) {
-                    $question->class = 'qs_qurrent';
+                    $question->class = 'qs_complete qs_qurrent';
                     $question->video = $storyItems->where('question_id', $id)->first()['video'];
-                    $current_question = $question;
+                    $currentQuestion = $question;
                     $current = true;
                 }
             }
         }
         
-        return view('frontend.story.step4', compact('cart', 'questions', 'current_question', 'storyItems'));
+        return view('frontend.story.step4', compact('cart', 'questions', 'currentQuestion', 'storyItems'));
     }
 
     /**
