@@ -176,7 +176,7 @@ export default {
                 success => {
                     console.log('recording upload complete.');
                     this.submitText = "Upload Complete";
-                    window.location.reload();
+                    // window.location.reload();
                 }
             ).catch(
                 error =>{
