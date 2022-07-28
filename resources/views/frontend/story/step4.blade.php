@@ -89,9 +89,15 @@
                                     <div class="vb_qs_scroll">
                                         <ul class="scroll_block">
                                             @foreach($questions as $question)
-                                            <li class="{{ $question->class }}">
-                                                <a href="javascript:void(0)" id="{{ $question->id }}" class="bookmark-fill">{{ $question->title }}</a>
-                                            </li>
+                                                @if ($question->class === "qs_complete")
+                                                    <li class="{{ $question->class }}">
+                                                        <a href="{{ route('create-your-story.step-4', $question->id) }}" class="bookmark-fill">{{ $question->title }}</a>
+                                                    </li>
+                                                    @continue
+                                                @endif
+                                                <li class="{{ $question->class }}">
+                                                    <a href="javascript:void(0)" class="bookmark-fill">{{ $question->title }}</a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </div><!--vb_qs_scroll-->

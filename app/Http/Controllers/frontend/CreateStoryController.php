@@ -188,6 +188,40 @@ class CreateStoryController extends BaseController
         
         return view('frontend.story.step4', compact('cart', 'questions', 'current_question', 'storyItems'));
     }
+    public function step4Preview($id) {
+        $cart = Session::get('cart');
+        if(!$cart) return redirect()->route('create-your-story.step-1');
+        $questions = Question::whereIn('id', $cart['questions'])->orderBy('sort', 'ASC')->get();
+        $storyItems = collect(Session::get('storyItems'));
+
+        if (!$storyItems->where('question_id', $id)->count()) {
+            abort(404);    
+        }
+
+        $current_question = [];
+        $current = false;
+
+        foreach($questions as $key=>$question) {
+            $question->class = '';
+
+            if($storyItems) {
+                if(in_array($question->id, $storyItems->pluck('question_id')->toArray())) {
+                    $question->class = 'qs_complete';
+                }
+            }
+
+            if(!$current) {
+                if($question->id == $id) {
+                    $question->class = 'qs_qurrent';
+                    $question->video = $storyItems->where('question_id', $id)->first()['video'];
+                    $current_question = $question;
+                    $current = true;
+                }
+            }
+        }
+        
+        return view('frontend.story.step4', compact('cart', 'questions', 'current_question', 'storyItems'));
+    }
 
     /**
      * Store a newly created resource in storage.
