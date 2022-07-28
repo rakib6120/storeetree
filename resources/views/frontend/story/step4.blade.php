@@ -91,7 +91,7 @@
                                             @foreach($questions as $question)
                                                 @if ($question->class === "qs_complete")
                                                     <li class="{{ $question->class }}">
-                                                        <a href="{{ route('create-your-story.step-4', $question->id) }}" class="bookmark-fill">{{ $question->title }}</a>
+                                                        <a href="{{ route('create-your-story.step-4.show', $question->id) }}" class="bookmark-fill">{{ $question->title }}</a>
                                                     </li>
                                                     @continue
                                                 @endif
