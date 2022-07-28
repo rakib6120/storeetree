@@ -6037,7 +6037,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (success) {
         console.log('recording upload complete.');
-        _this2.submitText = "Upload Complete"; // window.location.reload();
+        _this2.submitText = "Upload Complete";
       })["catch"](function (error) {
         console.error('an upload error occurred!');
         _this2.submitText = "Upload Failed";

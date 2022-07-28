@@ -29,7 +29,7 @@ class VideoRecordingController extends Controller
         $isNewItem = true;
         foreach ($storyItems as $key => $storyItem) {
             if ($storyItem['question_id'] == $request->question_id) {
-                $storyItems[$key]['video'] = $video_storage_link;
+                $storyItems[$key]['video'] = "storage/" . $video_storage_link;
 
                 $isNewItem = false;
                 break;
@@ -39,7 +39,7 @@ class VideoRecordingController extends Controller
         if ($isNewItem) {
             $storyItems[] = [
                 'question_id' => $request->question_id,
-                'video' => $video_storage_link
+                'video' => "storage/" . $video_storage_link
             ];
         }
 
