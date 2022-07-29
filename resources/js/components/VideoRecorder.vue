@@ -72,6 +72,8 @@ import 'webrtc-adapter'
 import RecordRTC from 'recordrtc'
 import Record from 'videojs-record/dist/videojs.record.js'
 import FFmpegjsEngine from 'videojs-record/dist/plugins/videojs.record.ffmpegjs.js';
+import Swal from 'sweetalert2'
+
 export default {
     props: ['upload_url', 'question'],
     data() {
@@ -96,7 +98,6 @@ export default {
                 },
                 width: 1020,
                 height: 1080,
-                // fluid: true,
                 plugins: {
                     record: {
                         pip: false,
@@ -128,19 +129,25 @@ export default {
         // error handling
         this.player.on('deviceReady', () => {
             this.player.record().start();
-            console.log('device ready:');
         });
         this.player.on('deviceError', () => {
-            console.log('device error:', this.player.deviceErrorCode);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: this.player.deviceErrorCode
+            });
         });
         this.player.on('error', (element, error) => {
-            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error
+            });
         });
         // user clicked the record button and started recording
         this.player.on('startRecord', () => {
             this.isPauseDisabled = false;
             this.isStopRecording = false;
-            console.log('started recording!');
         });
         // user completed recording and stream is available
         this.player.on('finishRecord', () => {
@@ -150,10 +157,6 @@ export default {
             this.isResumeDisabled = true;
             this.isPauseDisabled = true;
             this.player.record().stopDevice();
-
-            // the blob object contains the recorded data that
-            // can be downloaded by the user, stored on server etc.
-            console.log('finished recording: ', this.player.recordedData);
         });
     },
     methods: {
@@ -181,17 +184,24 @@ export default {
             }).then(
                 res => {
                     if (res.status === 200) {
-                        console.log('recording upload complete.');
                         this.submitText = "Upload Complete";
                         window.location.reload();
                     } else {
-                        console.error('an upload error occurred!');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: "Upload Failed"
+                        });
                         this.submitText = "Upload Failed";
                     }
                 }
             ).catch(
                 error =>{
-                    console.error('an upload error occurred!');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: "Upload Failed"
+                    });
                     this.submitText = "Upload Failed";
                 }
             );
@@ -214,10 +224,11 @@ export default {
             this.player.record().stop();
         },
         retakeVideo() {
-            this.isSaveDisabled = true;
+            this.isSaveDisabled   = true;
             this.isStartRecording = true;
             this.isResumeDisabled = true;
-            this.isPauseDisabled = false;
+            this.isPauseDisabled  = false;
+            this.submitText       = "Accept";
 
             this.retake += 1;
             this.player.record().start();

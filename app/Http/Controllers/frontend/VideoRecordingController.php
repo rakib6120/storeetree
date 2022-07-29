@@ -16,6 +16,7 @@ class VideoRecordingController extends Controller
             'video' => "required|mimetypes:video/webm",
             'question_id' => "required"
         ]);
+        dd('');
 
         $storyItems = (array) Session::get('storyItems');
         $video_storage_link = "chunk-video/" . Auth::user()->id . "/" . date('Y-m-d') . "/" . rand(99999, 9999999) . time() . ".mp4";
