@@ -7,10 +7,11 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
 class Helper {
     /*
@@ -104,5 +105,20 @@ class Helper {
 
     public static function storagePath($filePath) {
         return env('CDN_URL') . '/' . $filePath;
+    }
+
+    public static function bulkMediaDelete(array $stories)
+    {
+        $storyItems = Session::get('storyItems');
+
+        foreach ($stories as $key => $story) {
+            if (file_exists($story['video'])) {
+                unlink($story['video']);
+            }
+
+            array_splice($storyItems, $key, 1);
+        }
+
+        Session::put('storyItems', $storyItems);
     }
 }
