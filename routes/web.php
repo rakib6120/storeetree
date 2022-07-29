@@ -71,6 +71,9 @@ Route::group(['namespace' => 'frontend'], function() {
         Route::get('profile', 'ProfileController@index')->name('profile');
         Route::get('create-your-story/step-4', 'CreateStoryController@step4')->name('create-your-story.step-4');
         Route::get('create-your-story/step-4/{id}', 'CreateStoryController@step4Preview')->name('create-your-story.step-4.show');
+        Route::get('create-your-story/step-5', 'CreateStoryController@step5')->name('create-your-story.step-5');
+
+
         Route::get('family-trees', 'FamilyTreeController@index')->name('family-trees');
         Route::post('family-trees', 'FamilyTreeController@store')->name('family-trees.store');
     });

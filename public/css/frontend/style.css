@@ -1290,13 +1290,14 @@ body{
 
 .recorder_review_button{ float: right; display: inline-block;  margin: 0px 0px 0px 0px; padding: 10px 0px 0px 0px;  }
 
-.recorder_review_button button{ float: left; display: inline-block; margin-left: 10px; height: 40px; line-height: 40px; border:none; color: #fff; border-radius: 60px; box-shadow: none; outline: 0; font-size: 16px; font-weight: 600;padding: 0px 20px 0px 20px; }
+.recorder_review_button button, .recorder_review_button a{ float: left; display: inline-block; margin-left: 10px; height: 40px; line-height: 40px; border:none; color: #fff; border-radius: 60px; box-shadow: none; outline: 0; font-size: 16px; font-weight: 600;padding: 0px 20px 0px 20px; }
 
 .recorder_review_button button.btn_review{ background-color: #ffba00; }
-.recorder_review_button button.btn_re-record{ background-color: #5c5c5c; }
+.recorder_review_button button.btn_re-record, .recorder_review_button a.btn_re-record{ background-color: #5c5c5c; }
 .recorder_review_button button.btn_accept{ background-color: #2976c0; }
 
 .recorder_review_button button.btn_re-record:hover{ background-color: #133c7e; }
+.recorder_review_button a.btn_re-record:hover{ background-color: #133c7e; }
 
 
 .video_recor_area{ width: 100%; float: left; display: block; height: 100%; margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px; }

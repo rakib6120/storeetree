@@ -53,6 +53,12 @@
                                     <h3>Step 4</h3>
                                 </div>
                             </li>
+                            <li>
+                                <div class="process_tick"><span></span></div>
+                                <div class="process_info_bl">
+                                    <h3>Step 5</h3>
+                                </div>
+                            </li>
                         </ul>
                     </div><!--end deliver_order_process_dop-->
                 </div><!--end deliver_process_section-->

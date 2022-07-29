@@ -54,6 +54,12 @@
                                     <h3>Step 4</h3>
                                 </div>
                             </li>
+                            <li>
+                                <div class="process_tick"><span></span></div>
+                                <div class="process_info_bl">
+                                    <h3>Step 5</h3>
+                                </div>
+                            </li>
                         </ul>
                     </div><!--end deliver_order_process_dop-->
                 </div><!--end deliver_process_section-->
@@ -116,13 +122,16 @@
                 </div><!--video_wrapper-->
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 padding_cs_1">
-                <div class="step_bottom_section">
-                    <div class="step_next"><button type="button" name="" class="step_next_btn" >Next</button></div><!--step_next-->
-                </div><!--step_bottom_section-->
+
+        @if ($questions->count() === $questions->whereIn('class', ['qs_complete', 'qs_complete qs_qurrent'])->count())
+            <div class="row">
+                <div class="col-xs-12 padding_cs_1">
+                    <div class="step_bottom_section">
+                        <div class="step_next"><a href="{{ route('create-your-story.step-5') }}" class="btn step_next_btn" >Next</a></div><!--step_next-->
+                    </div><!--step_bottom_section-->
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     
 </div><!--video_content-->

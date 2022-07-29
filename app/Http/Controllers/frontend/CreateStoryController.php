@@ -232,45 +232,26 @@ class CreateStoryController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function step4Store(Request $request) {
+    public function step5(Request $request) {
+        $cart       = Session::get('cart');
+        if(!$cart) return redirect()->route('create-your-story.step-1');
         
-        $rules = [
-            'video' => 'required',
-        ];
+        $questions  = Question::whereIn('id', $cart['questions'])->orderBy('sort', 'ASC')->get();
+        $storyItems = collect(Session::get('storyItems'));
 
-
-        $messages = [
-//            'title.required' => 'Title is required',
-        ];
-
-        $this->validate($request, $rules, $messages);
-
-        $storyItems = Session::get('storyItems');
-        
-        if ($request->hasFile('video')) {
-            $story = Session::get('story');
-            if(!$story) {
-                $story = Story::create([
-                    'package' => $request->get('plan'),
-                    'user_id'=> auth()->user()->id
-                ]);
-            }
-
-            $video = Helper::uploadFile($request->file('video'), null, Config::get('constants.VIDEO'), 'webm');
-
-            $storyItems[] = StoryItem::create([
-                'question_id' => $request->get('question_id'),
-                'video' => $video,
-                'story_id' => $story->id,
-            ])->question_id;
-        
-            Session::put('story', $story);
-        
-            Session::put('storyItems', $storyItems);
+        // Cheking is all cart story was uploaded or redirect to upload.
+        if (array_diff($cart['questions'], $storyItems->pluck('question_id')->toArray())) {
+            return redirect()->route('create-your-story.step-4');
         }
 
-        return redirect()->route('create-your-story.step-4');
-        
+        // Checking if any extra story uploaded then remove them.
+        $extraStory = array_diff($storyItems->pluck('question_id')->toArray(), $cart['questions']);
+        if ($extraStory) {
+            Helper::bulkMediaDelete($storyItems->whereIn('question_id', $extraStory)->toArray());
+            $storyItems = collect(Session::get('storyItems'));
+        }
+
+        return view('frontend.story.step5', compact('questions', 'storyItems'));
     }
 
 }
