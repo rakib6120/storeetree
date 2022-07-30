@@ -79,6 +79,8 @@ Route::group(['namespace' => 'frontend'], function() {
         Route::post('family-trees', 'FamilyTreeController@store')->name('family-trees.store');
     });
 });
+Route::get('/pay','PaymentController@pay')->name('pay');
+Route::post('/dopay/online', 'PaymentController@handleonlinepay')->name('dopay.online');
 
 /*
  * All backend functionality route
