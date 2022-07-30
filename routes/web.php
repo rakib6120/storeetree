@@ -72,6 +72,7 @@ Route::group(['namespace' => 'frontend'], function() {
         Route::get('create-your-story/step-4', 'CreateStoryController@step4')->name('create-your-story.step-4');
         Route::get('create-your-story/step-4/{id}', 'CreateStoryController@step4Preview')->name('create-your-story.step-4.show');
         Route::get('create-your-story/step-5', 'CreateStoryController@step5')->name('create-your-story.step-5');
+        Route::post('create-your-story/step-5/merge-chunk-videos', 'CreateStoryController@mergeChunkVideos')->name('create-your-story.step-5.merge-chunk-videos');
 
 
         Route::get('family-trees', 'FamilyTreeController@index')->name('family-trees');
