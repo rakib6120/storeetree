@@ -17,15 +17,9 @@ class CreateStoryItemsTable extends Migration
             $table->id();
             $table->string('video')->nullable();
             $table->unsignedBigInteger('question_id')->nullable();
-            $table->foreign('question_id')
-                ->references('id')
-                ->on('questions')
-                ->onDelete('cascade');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->unsignedBigInteger('story_id')->nullable();
-            $table->foreign('story_id')
-                ->references('id')
-                ->on('stories')
-                ->onDelete('cascade');
+            $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

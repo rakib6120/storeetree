@@ -9,10 +9,12 @@ use App\Models\Category;
 use App\Models\Question;
 use App\Models\StoryItem;
 use Illuminate\Http\Request;
+use FFMpeg\Format\Video\X264;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use ProtoneMedia\LaravelFFMpeg\Filesystem\Media;
 
 class CreateStoryController extends BaseController
 {
@@ -274,19 +276,31 @@ class CreateStoryController extends BaseController
             $storyItems = collect(Session::get('storyItems'));
         }
 
-        $mergeableVideos = [];
-        foreach ($questions as $question){
+        $mergeableVideos  = [];
+        $createStoryItems = [];
+        foreach ($questions as $key => $question){
             $story = $storyItems->where('question_id', $question->id)->first();
-            $mergeableVideos[] = str_replace('storage', "", $story['video']);
+            $mergeableVideos[] = $createStoryItems[$key]['video'] = str_replace('storage/', "", $story['video']);
+            $createStoryItems[$key]['question_id'] = $question->id;
         }
-
+        
         $video_storage_link = "merged-video/" . Auth::user()->id . "/" . date('Y-m-d') . "/" . rand(99999, 9999999) . time() . ".mp4";
-
         FFMpeg::fromDisk('public')
             ->open($mergeableVideos)
             ->export()
             ->concatWithoutTranscoding()
             ->save($video_storage_link);
+
+        $story = Story::create([
+            'video' => $video_storage_link,
+            'package' => $cart['plan'],
+            'user_id' => auth()->user()->id,
+        ]);
+        $story->storyItems()->createMany($createStoryItems);
+
+        Session::forget(['cart', 'storyItems']);
+
+        return redirect('/');
     }
 
 }
