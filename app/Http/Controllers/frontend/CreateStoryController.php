@@ -263,6 +263,9 @@ class CreateStoryController extends BaseController
         
         $questions  = Question::whereIn('id', $cart['questions'])->orderBy('sort', 'ASC')->get();
         $storyItems = collect(Session::get('storyItems'));
+        $createStoryWarmupItems = array_map(function ($item){
+            return ['warmup_id' => $item];
+        }, $cart['warmups']);
 
         // Cheking is all cart story was uploaded or redirect to upload.
         if (array_diff($cart['questions'], $storyItems->pluck('question_id')->toArray())) {
@@ -297,6 +300,7 @@ class CreateStoryController extends BaseController
             'user_id' => auth()->user()->id,
         ]);
         $story->storyItems()->createMany($createStoryItems);
+        $story->storyWarmupItems()->createMany($createStoryWarmupItems);
 
         Session::forget(['cart', 'storyItems']);
 

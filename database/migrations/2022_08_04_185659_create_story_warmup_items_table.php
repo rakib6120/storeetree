@@ -15,12 +15,9 @@ class CreateStoryWarmupItemsTable extends Migration
     {
         Schema::create('story_warmup_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('warmup_id');
-            $table->unsignedBigInteger('story_id');
+            $table->foreignId('warmup_id')->references('id')->on('warmups')->onDelete('cascade');
+            $table->foreignId('story_id')->references('id')->on('stories')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('warmup_id')->references('id')->on('warmups')->onDelete('cascade');
-            $table->foreign('story_id')->references('id')->on('stories')->onDelete('cascade');
         });
     }
 
