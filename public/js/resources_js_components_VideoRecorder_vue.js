@@ -6047,10 +6047,9 @@ __webpack_require__.r(__webpack_exports__);
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       }).then(function (res) {
-        console.log(res);
-
         if (res.status === 200) {
-          _this2.submitText = "Upload Complete"; // window.location.reload();
+          _this2.submitText = "Upload Complete";
+          window.location.reload();
         } else {
           sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
             icon: 'error',
@@ -6060,7 +6059,6 @@ __webpack_require__.r(__webpack_exports__);
           _this2.submitText = "Upload Failed";
         }
       })["catch"](function (error) {
-        console.log(error);
         sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
           icon: 'error',
           title: 'Oops...',
