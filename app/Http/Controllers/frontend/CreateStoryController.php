@@ -256,16 +256,13 @@ class CreateStoryController extends BaseController
         return view('frontend.story.step5', compact('questions', 'storyItems'));
     }
 
-    public function mergeChunkVideos(Request $request)
+    public function mergeChunkVideos()
     {
         $cart       = Session::get('cart');
         if(!$cart) return redirect()->route('create-your-story.step-1');
         
         $questions  = Question::whereIn('id', $cart['questions'])->orderBy('sort', 'ASC')->get();
         $storyItems = collect(Session::get('storyItems'));
-        $createStoryWarmupItems = array_map(function ($item){
-            return ['warmup_id' => $item];
-        }, $cart['warmups']);
 
         // Cheking is all cart story was uploaded or redirect to upload.
         if (array_diff($cart['questions'], $storyItems->pluck('question_id')->toArray())) {
@@ -278,6 +275,10 @@ class CreateStoryController extends BaseController
             Helper::bulkMediaDelete($storyItems->whereIn('question_id', $extraStory)->toArray());
             $storyItems = collect(Session::get('storyItems'));
         }
+
+        $createStoryWarmupItems = array_map(function ($item){
+            return ['warmup_id' => $item];
+        }, $cart['warmups']);
 
         $mergeableVideos  = [];
         $createStoryItems = [];

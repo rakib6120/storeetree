@@ -52,9 +52,7 @@ Route::group(['namespace' => 'frontend'], function() {
     Route::post('contact-us', 'ContactUsController@store');
     Route::get('faqs', 'FaqController@index')->name('faqs');
 
-    Route::resource('blogs', 'BlogController')->only([
-        'index', 'show'
-    ]);
+    Route::resource('blogs', 'BlogController')->only(['index', 'show']);
     
     Route::get('create-your-story/step-1', 'CreateStoryController@step1')->name('create-your-story.step-1');
     Route::post('create-your-story/step-1', 'CreateStoryController@step1Store');
@@ -63,26 +61,23 @@ Route::group(['namespace' => 'frontend'], function() {
     Route::get('create-your-story/step-3', 'CreateStoryController@step3')->name('create-your-story.step-3');
     Route::post('create-your-story/step-3', 'CreateStoryController@step3Store');
     Route::get('view-story', 'CreateStoryController@show')->name('view-story');
-    Route::post('create-your-story/step-4/store', 'CreateStoryController@step4Store')->name('create-your-story.step-4.store');
 
-    Route::post('upload/video', 'VideoRecordingController@store')->name('video.store');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('profile', 'ProfileController@index')->name('profile');
         Route::get('create-your-story/step-4', 'CreateStoryController@step4')->name('create-your-story.step-4');
+        Route::post('upload/video', 'VideoRecordingController@store')->name('video.store');
         Route::get('create-your-story/step-4/{id}', 'CreateStoryController@step4Preview')->name('create-your-story.step-4.show');
         Route::get('create-your-story/step-5', 'CreateStoryController@step5')->name('create-your-story.step-5');
         Route::post('create-your-story/step-5/merge-chunk-videos', 'CreateStoryController@mergeChunkVideos')->name('create-your-story.step-5.merge-chunk-videos');
+
+        Route::get('story/payment','PaymentController@pay')->name('story.pay');
+        Route::post('store.payment-process','PaymentController@handlePayment')->name('store.payment-process');
 
 
         Route::get('family-trees', 'FamilyTreeController@index')->name('family-trees');
         Route::post('family-trees', 'FamilyTreeController@store')->name('family-trees.store');
     });
-});
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/pay','PaymentController@pay')->name('pay');
-    Route::post('/dopay/online', 'PaymentController@handleonlinepay')->name('dopay.online');
 });
 
 /*

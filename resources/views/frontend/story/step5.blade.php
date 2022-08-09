@@ -111,7 +111,7 @@
                     <form action="{{ route('create-your-story.step-5.merge-chunk-videos') }}" method="post">
                         @csrf
                         <div class="step_next">
-                            <button type="submit" name="" class="step_next_btn" data-toggle="modal" data-target="#cart_popup">Accept All Videos</button>
+                            <button type="button" name="" class="step_next_btn" data-toggle="modal" data-target="#cart_popup">Accept All Videos</button>
                         </div><!--step_next-->
                     </form>
                 </div><!--step_bottom_section-->
@@ -120,6 +120,61 @@
     </div>
     
 </div><!--video_content-->
+
+
+<div class="modal fade modal-vcenter modal_cart" id="cart_popup" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="cart_top">
+                            <h3>Cart</h3>
+                            <p>Great Job! as our proprietary software is building your special personalized video, this is a great time to go through Checkout. Please confirm the selected package below and click on to Payment Info</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="cart_table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h3>{{ $packagePlan['title'] }}</h3>
+                                        </td>
+                                        <td class="price_col">
+                                            <strong>${{ $packagePlan['price'] }}</strong>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div><!--cart_table-->
+                    </div>
+                </div>
+                
+                
+                <div class="row padding_gap_3">
+                    <div class="col-xs-12">
+                        <div class="modal_confirm_btn checkout_link"><a href="{{ route('story.pay') }}">Payment Info</a></div>
+                    </div>
+                    
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
 
 
 @endsection
