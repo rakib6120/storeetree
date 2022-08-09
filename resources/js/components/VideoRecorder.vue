@@ -185,10 +185,9 @@ export default {
                 }
             }).then(
                 res => {
-                    console.log(res);
                     if (res.status === 200) {
                         this.submitText = "Upload Complete";
-                        // window.location.reload();
+                        window.location.reload();
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -200,7 +199,6 @@ export default {
                 }
             ).catch(
                 error =>{
-                    console.log(error);
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
