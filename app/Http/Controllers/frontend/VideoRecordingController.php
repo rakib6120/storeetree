@@ -22,7 +22,7 @@ class VideoRecordingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'video' => "required|mimetypes:video/webm",
+            'video' => "required|mimetypes:video/*",
             'question_id' => "required"
         ]);
 
