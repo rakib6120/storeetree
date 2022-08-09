@@ -5,6 +5,8 @@
 
     RewriteEngine On
 
+	RewriteRule ^(phpmyadmin) - [L]
+
     RewriteCond %{REQUEST_FILENAME} -d [OR]
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule ^ ^$1 [N]
