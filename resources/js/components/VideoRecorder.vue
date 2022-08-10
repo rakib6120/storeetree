@@ -175,10 +175,12 @@ export default {
             this.submitText = "Uploading "+data.name;
             this.player.record().stopDevice();
 
-            fetch(this.upload_url, {
-                method: 'POST',
-                body: formData,
+            axios({
+                method: "post",
+                url: this.upload_url,
+                data: formData,
                 headers: {
+                    "Content-Type": "multipart/form-data",
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             }).then(
