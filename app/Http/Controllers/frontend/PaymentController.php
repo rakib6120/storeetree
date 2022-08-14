@@ -4,7 +4,9 @@ namespace App\Http\Controllers\frontend;
 
 use App\Models\PaymentLog;
 use Illuminate\Http\Request;
+use App\Repositories\VideoParse;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 use net\authorize\api\contract\v1\PaymentType;
 use net\authorize\api\constants\ANetEnvironment;
 use App\Http\Controllers\frontend\BaseController;
@@ -89,9 +91,8 @@ class PaymentController extends BaseController
 
                 if ($tresponse != null && $tresponse->getMessages() != null) {
                     $message_text = $tresponse->getMessages()[0]->getDescription() . ", Transaction ID: " . $tresponse->getTransId();
-                    $msg_type = "success_msg";
 
-                    PaymentLog::create([
+                    $paymentLog = PaymentLog::create([
                         'amount' => $input['amount'],
                         'response_code' => $tresponse->getResponseCode(),
                         'transaction_id' => $tresponse->getTransId(),
@@ -100,6 +101,11 @@ class PaymentController extends BaseController
                         'name_on_card' => trim($input['owner']),
                         'quantity' => 1
                     ]);
+
+                    VideoParse::mergeChunkVideos($paymentLog->id);
+                    Alert::success($message_text);
+
+                    return redirect('/');
                 } else {
                     $message_text = 'There were some issue with the payment. Please try again later.';
                     $msg_type = "error_msg";

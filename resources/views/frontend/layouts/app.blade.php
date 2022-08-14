@@ -79,6 +79,7 @@
             </div>
 
             <div id="app">
+                @include('sweetalert::alert')
                 @yield('content')
             </div>
 

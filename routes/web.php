@@ -69,7 +69,6 @@ Route::group(['namespace' => 'frontend'], function() {
         Route::post('upload/video', 'VideoRecordingController@store')->name('video.store');
         Route::get('create-your-story/step-4/{id}', 'CreateStoryController@step4Preview')->name('create-your-story.step-4.show');
         Route::get('create-your-story/step-5', 'CreateStoryController@step5')->name('create-your-story.step-5');
-        Route::post('create-your-story/step-5/merge-chunk-videos', 'CreateStoryController@mergeChunkVideos')->name('create-your-story.step-5.merge-chunk-videos');
 
         Route::get('story/payment','PaymentController@pay')->name('story.pay');
         Route::post('store.payment-process','PaymentController@handlePayment')->name('store.payment-process');

@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.1",
         "laravelcollective/html": "^6.3",
-        "pbmedia/laravel-ffmpeg": "^7.8"
+        "pbmedia/laravel-ffmpeg": "^7.8",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

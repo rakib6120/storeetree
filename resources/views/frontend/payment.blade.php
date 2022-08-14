@@ -48,14 +48,6 @@
                     </div>
                     
                     <form method="post" action="{{ route('store.payment-process') }}">
-                        @if(session('success_msg'))
-                            <div class="alert alert-success fade in alert-dismissible show">                
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true" style="font-size:20px">×</span>
-                                </button>
-                                {{ session('success_msg') }}
-                            </div>
-                        @endif
                         @if(session('error_msg'))
                             <div class="alert alert-danger fade in alert-dismissible show">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

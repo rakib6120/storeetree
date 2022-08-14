@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Application Service Providers...

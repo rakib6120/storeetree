@@ -17,8 +17,8 @@ class CreateStoriesTable extends Migration
             $table->id();
             $table->string('video');
             $table->string('package')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('payment_log_id')->references('id')->on('payment_logs')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

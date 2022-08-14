@@ -108,12 +108,9 @@
         <div class="row">
             <div class="col-xs-12 padding_cs_1">
                 <div class="step_bottom_section">
-                    <form action="{{ route('create-your-story.step-5.merge-chunk-videos') }}" method="post">
-                        @csrf
-                        <div class="step_next">
-                            <button type="button" name="" class="step_next_btn" data-toggle="modal" data-target="#cart_popup">Accept All Videos</button>
-                        </div><!--step_next-->
-                    </form>
+                    <div class="step_next">
+                        <button type="button" name="" class="step_next_btn" data-toggle="modal" data-target="#cart_popup">Accept All Videos</button>
+                    </div><!--step_next-->
                 </div><!--step_bottom_section-->
             </div>
         </div>
