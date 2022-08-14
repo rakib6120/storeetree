@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-xs-12 col-md-6 col-sm-6">
                                 <label>Card Validity</label>
-                                <input type="text" class="form-control" name="expiration" value="{{ old('expiration') }}" placeholder="MM/YY">
+                                <input type="text" class="form-control" name="expiration" value="{{ old('expiration') }}" placeholder="MM/YYYY">
                                 @error('expiration')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
