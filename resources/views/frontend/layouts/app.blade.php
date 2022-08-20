@@ -79,7 +79,6 @@
             </div>
 
             <div id="app">
-                @include('sweetalert::alert')
                 @yield('content')
             </div>
 
@@ -394,6 +393,7 @@
         </div>
         <!--forgot password modal end -->
 
+        @include('sweetalert::alert')
         <script type="text/javascript" src="{{ asset('js/frontend/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/frontend/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/frontend/jquery-ui.min.js') }}"></script>

@@ -160,7 +160,7 @@
                                         @endif
                                     </div><!--family-tree-single-row-->
                                     @if(count($siblings) || $self)
-                                    <div @if(count($siblings) && $self) class="family-tree-children-row" @endif>
+                                    <div class="family-tree-children-row">
                                         @foreach($siblings as $family_tree)
                                         <div class="family_tree_parent_s">
                                             <div class="ft_parents_col">
@@ -341,7 +341,7 @@
                                         @endif
                                     </div><!--family-tree-single-row-->
                                     @if($wife || count($siblings_in_laws))
-                                    <div @if($wife && count($siblings_in_laws)) class="family-tree-children-row" @endif>
+                                    <div class="family-tree-children-row">
                                         @if($wife)
                                         <div class="family_tree_parent_s">
                                             <div class="ft_parents_col">
@@ -673,7 +673,7 @@
 
     function checkRelationValid() {
         var form_data = new FormData($("#relationForm")[0]);
-        $('.form-group span.error').remove();
+        $('.form-group span').remove();
         $.ajax({
             type: "POST",
             data: form_data,
@@ -688,7 +688,7 @@
                     var errors = data.responseJSON;
                     $.each(errors.errors, function (i, error) {
                         var el = $(document).find('[name="' + i + '"]');
-                        el.after($('<span class="error" style="color: red;">' + error[0] + '</span>'));
+                        el.after($('<span style="color: red;">' + error[0] + '</span>'));
                     });
                 }
             }
