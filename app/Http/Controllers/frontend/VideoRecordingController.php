@@ -39,7 +39,7 @@ class VideoRecordingController extends Controller
             })
             ->export()
             ->toDisk('public')
-            ->inFormat(new \FFMpeg\Format\Video\X264('libmp3lame', 'libx264'))
+            ->inFormat(new \FFMpeg\Format\Video\X264)
             ->save($video_storage_link);
 
         $isNewItem = true;
