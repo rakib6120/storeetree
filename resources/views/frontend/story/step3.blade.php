@@ -75,7 +75,7 @@
                     <div class="pp_top_section">
                         <h2>Warm Up Round</h2>
                         <h4>(5 seconds to answer each) </h4>
-                        <p>to warm people up. Question and quick recorded answer. Show list to prepare them before questions start.</p>
+                        <p>To help warm you up to our video process, please select 3 quick questions to answer.</p>
                     </div>
                 </div>
             </div>

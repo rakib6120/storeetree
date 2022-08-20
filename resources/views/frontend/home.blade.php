@@ -48,7 +48,7 @@
                             <h2>View a Story</h2>
                             <ul>
                                 <li>See a family & friends tree - watch their stories</li>
-                                <li>watch their stories</li>
+                                <li>Watch their stories</li>
                                 <li>Create your own story</li>
                             </ul>
                             <div class="common_btn"><a href="{{ route('view-story') }}">View Story</a></div>

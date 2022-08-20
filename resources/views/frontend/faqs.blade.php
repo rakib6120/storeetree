@@ -16,7 +16,7 @@
                 <div class="col-xs-12">
                     <div class="faq_top_section">
                         <h2>FREQUENTLY ASKED QUESTIONS</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make</p>
+                        <p>Thank you for your interest in the StoryTree Memory Maker. Below are some common We have run across. If you do not see the Question/answer you are looking for, definitely reach out to us directly with the link at the bottom of this page - we are happy to help.</p>
                     </div>
                 </div>
             </div>

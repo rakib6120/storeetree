@@ -74,8 +74,7 @@
                 <div class="col-xs-12">
                     <div class="pp_top_section">
                         <h2>START YOUR STORY NOW </h2>
-                        <p>Medium traffic personal sites. Web hosting made easy & affordable, choose a fine-tuned web hosting services solution for successful personal and 
-                            Lorem ipsum text Lorem ipsum text  Lorem ipsum text  business websites. Super Fast.</p>
+                        <p>Welcome - STEP ONE is to choose whiche Storee Package you would like</p>
                     </div>
                 </div>
             </div>
@@ -88,16 +87,16 @@
                     <div class="plan_single_block">
                         <div class="priceblock_top">
                             <h4>Lite</h4>
-                            <h2>$19.99</h2>
-                            <h3>Per Month</h3>
+                            <h2>$19.95</h2>
+                            <h3>One Time</h3>
                         </div><!--priceblock_top-->
                         <div class="plan_dsp">
                             <ul>
                                 <li class="active">5 Questions</li>
-                                <li class="active">Free "your decade" memories</li>
-                                <li>Unlimited Re-recording until you are happy</li>
-                                <li>Free Family Tree Building</li>
-                                <li>Unlimited Friend Connections</li>
+                                <li>Free "your decade" memories</li>
+                                <li>Unlimited Re-recording until you are happy with your videos</li>
+                                <li class="active">Free Family Tree Building</li>
+                                <li class="active">Unlimited Friend Connections</li>
                             </ul>
                         </div><!--plan_dsp-->
                         <div class="plan_select_option">
@@ -112,16 +111,16 @@
                     <div class="plan_single_block">
                         <div class="priceblock_top">
                             <h4>Standard</h4>
-                            <h2>$29.99</h2>
-                            <h3>Per Month</h3>
+                            <h2>$27.95</h2>
+                            <h3>One Time</h3>
                         </div><!--priceblock_top-->
                         <div class="plan_dsp">
                             <ul>
                                 <li class="active">7 Questions</li>
                                 <li class="active">Free "your decade" memories</li>
-                                <li class="active">Unlimited Re-recording until you are happy</li>
-                                <li>Free Family Tree Building</li>
-                                <li>Unlimited Friend Connections</li>
+                                <li class="active">Unlimited Re-recording until you are happy with your videos</li>
+                                <li class="active">Free Family Tree Building</li>
+                                <li class="active">Unlimited Friend Connections</li>
                             </ul>
                         </div><!--plan_dsp-->
                         <div class="plan_select_option">
@@ -136,14 +135,14 @@
                     <div class="plan_single_block">
                         <div class="priceblock_top">
                             <h4>Premimum</h4>
-                            <h2>$49.99</h2>
-                            <h3>Per Month</h3>
+                            <h2>$29.95</h2>
+                            <h3>One Time</h3>
                         </div><!--priceblock_top-->
                         <div class="plan_dsp">
                             <ul>
                                 <li class="active">10 Questions</li>
                                 <li class="active">Free "your decade" memories</li>
-                                <li class="active">Unlimited Re-recording until you are happy</li>
+                                <li class="active">Unlimited Re-recording until you are happy with your videos</li>
                                 <li class="active">Free Family Tree Building</li>
                                 <li class="active">Unlimited Friend Connections</li>
                             </ul>
