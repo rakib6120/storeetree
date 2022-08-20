@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Story;
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -63,5 +64,9 @@ class User extends Authenticatable
 
     public function familyTrees() {
         return $this->hasMany(FamilyTree::class);
+    }
+
+    public function stories() {
+        return $this->hasMany(Story::class);
     }
 }

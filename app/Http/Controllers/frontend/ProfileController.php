@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\frontend;
 
+use Illuminate\Support\Facades\Auth;
+
 class ProfileController extends BaseController
 {
     public function __construct() {
@@ -14,6 +16,11 @@ class ProfileController extends BaseController
      */
     public function index() {
         return view('frontend.profile');
+    }
+
+    public function previewStory() {
+        $user = Auth::user()->load('stories');
+        return view('frontend.preview-story', ['stories' => $user->stories]);
     }
 
 }

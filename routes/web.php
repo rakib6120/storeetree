@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\VideoParse;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Session;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('test', function (){
+    // dd(VideoParse::mergeChunkVideos(12));
+});
 
 Route::get('/cache-clear', function() {
     Artisan::call('cache:clear');
@@ -60,7 +65,6 @@ Route::group(['namespace' => 'frontend'], function() {
     Route::post('create-your-story/step-2', 'CreateStoryController@step2Store');
     Route::get('create-your-story/step-3', 'CreateStoryController@step3')->name('create-your-story.step-3');
     Route::post('create-your-story/step-3', 'CreateStoryController@step3Store');
-    Route::get('view-story', 'CreateStoryController@show')->name('view-story');
 
 
     Route::middleware(['auth'])->group(function () {
@@ -73,9 +77,10 @@ Route::group(['namespace' => 'frontend'], function() {
         Route::get('story/payment','PaymentController@pay')->name('story.pay');
         Route::post('store.payment-process','PaymentController@handlePayment')->name('store.payment-process');
 
-
         Route::get('family-trees', 'FamilyTreeController@index')->name('family-trees');
         Route::post('family-trees', 'FamilyTreeController@store')->name('family-trees.store');
+
+        Route::get('view-story', "ProfileController@previewStory")->name('view-story');
     });
 });
 
