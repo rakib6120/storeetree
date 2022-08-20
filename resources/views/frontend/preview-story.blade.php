@@ -17,7 +17,7 @@
         
     <div class="container">
         <div class="row">
-            @foreach ($stories as $story)
+            @forelse ($stories as $story)
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="single_video_thm">
                         <div class="video_thm_top">
@@ -29,7 +29,11 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="alert alert-danger text-center" role="alert">
+                    <strong>No story found!</strong>
+                </div>
+            @endforelse
 
         </div>
     </div>
