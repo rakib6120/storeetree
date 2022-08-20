@@ -14,7 +14,6 @@
     <div class="company_info">
         <div class="company_info_iner">
             <h2>Company story</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,.</p>
         </div><!-- end company_info_iner-->
     </div><!-- end company_info-->
     <div class="common_section story_section">
@@ -30,10 +29,10 @@
                         <div class="story_block">
                             <h2>Our Passion for storeetree</h2>
                             <ul>
-                                <li>Heritage helps ground us</li>
+                                <li>Our Heritage Grounds Us</li>
                                 <li>Telling your story in your words, expressions, tone is memorable</li>
-                                <li>no telephone game of your story changing from person to person to person.</li>
-                                <li>Making this process incredibly simple. 20+ minutes to immortalize your story.</li>
+                                <li>No "Telephone Game" of your story changing from person to person to person.</li>
+                                <li>Making this process simple. 20+ minutes to immortalize your story.</li>
                             </ul>
                             <div class="common_btn"><a href="#">sTART nOW</a></div>
                         </div><!--story_block-->
