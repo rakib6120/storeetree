@@ -11,18 +11,9 @@ use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class VideoParse
 {
-    public static function mergeChunkVideos(int $payment_log_id)
-    {
-        $cart       = Session::get('cart');
-        if(!$cart) return redirect()->route('create-your-story.step-1');
-        
+    public static function mergeChunkVideos(int $payment_log_id, $cart, $storyItems)
+    {        
         $questions  = Question::whereIn('id', $cart['questions'])->orderBy('sort', 'ASC')->get();
-        $storyItems = collect(Session::get('storyItems'));
-
-        // Cheking is all cart story was uploaded or redirect to upload.
-        if (array_diff($cart['questions'], $storyItems->pluck('question_id')->toArray())) {
-            return redirect()->route('create-your-story.step-4');
-        }
 
         // Checking if any extra story uploaded then remove them.
         $extraStory = array_diff($storyItems->pluck('question_id')->toArray(), $cart['questions']);

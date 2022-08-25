@@ -43,8 +43,18 @@ class PaymentController extends BaseController
             'cvv' => "required|integer|digits_between:3,4"
         ]);
 
+        $cart = Session::get('cart');
+        if(!$cart) return redirect()->route('create-your-story.step-1');
+
+        $storyItems = collect(Session::get('storyItems'));
+
+        // Cheking is all cart story was uploaded or redirect to upload.
+        if (array_diff($cart['questions'], $storyItems->pluck('question_id')->toArray())) {
+            return redirect()->route('create-your-story.step-4');
+        }
+
         $expirations = explode('/', $request->expiration);
-        $input = $request->except('expiration', '_token') + ['expiration-month' => $expirations[0], 'expiration-year' => $expirations[1], 'amount' => 30];
+        $input = $request->except('expiration', '_token') + ['expiration-month' => $expirations[0], 'expiration-year' => $expirations[1], 'amount' => config('plans.' . $cart['plan']. '.price')];
 
         /* Create a merchantAuthenticationType object with authentication details
           retrieved from the constants file */
@@ -102,7 +112,7 @@ class PaymentController extends BaseController
                         'quantity' => 1
                     ]);
 
-                    VideoParse::mergeChunkVideos($paymentLog->id);
+                    VideoParse::mergeChunkVideos($paymentLog->id, $cart, $storyItems);
                     Alert::success($message_text);
 
                     return redirect('/');
