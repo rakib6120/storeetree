@@ -585,60 +585,56 @@
                         <div class="modal-block">
                             <div class="modal-form">
                                 {!! Form::open(['method'=>'POST', 'action'=>'frontend\FamilyTreeController@store', 'onsubmit'=>'return checkRelationValid()', 'id' => 'relationForm']) !!}
-                                <div class="form-group">
-                                    {!! Form::text('relation_first_name', null, ['class'=>'form-control', 'placeholder' => 'First Name']) !!}
-                                </div><!--form-group-->
-
-                                <div class="form-group">
-                                    {!! Form::text('relation_last_name', null, ['class'=>'form-control', 'placeholder' => 'Last Name']) !!} 
-                                </div><!--form-group-->
 
                                 <div class="form-group">
                                     <div class="form_select_common select_common">
                                         {!! Form::select('relation_id', [''=>'Choose a Relation']+$relations, null, ['class'=>'option-select', 'id'=>'relation_id']) !!}
                                     </div>
                                 </div><!--form-group-->
+
                                 
-                                <div class="form-group hidden son_id">
-                                    <div class="form_select_common select_common">
-                                        {!! Form::select('son_id', [''=>'Choose Spouse']+$sons_relations->pluck('full_name', 'id')->all(), null, ['class'=>'option-select', 'id'=>'son_id']) !!}
-                                    </div>
-                                </div><!--form-group-->
-                                
-                                <div class="form-group hidden daughter_id">
-                                    <div class="form_select_common select_common">
-                                        {!! Form::select('daughter_id', [''=>'Choose Spouse']+$daughter_relations->pluck('full_name', 'id')->all(), null, ['class'=>'option-select', 'id'=>'daughter_id']) !!}
-                                    </div>
-                                </div><!--form-group-->
-                                
-                                <div class="form-group hidden parent_id">
-                                    <div class="form_select_common select_common">
-                                        {!! Form::select('parent_id', [''=>'Choose Spouse']+$children_relations->pluck('parent_full_name', 'id')->all(), null, ['class'=>'option-select', 'id'=>'parent_id']) !!}
-                                    </div>
+
+                                <div class="form-group">
+                                    {!! Form::text('first_name', null, ['class'=>'form-control', 'placeholder' => 'First Name']) !!}
                                 </div><!--form-group-->
 
                                 <div class="form-group">
-                                    {!! Form::text('relation_dob', null, ['class'=>'form-control dob_input', 'id' => 'relation_dob', 'placeholder' => 'Date Of Birth ( YYYY-MM-DD )', 'autocomplete' => 'off']) !!}
+                                    {!! Form::text('last_name', null, ['class'=>'form-control', 'placeholder' => 'Last Name']) !!}
+                                </div><!--form-group-->
+
+                                <div class="form-group">
+                                    {!! Form::text('email', null, ['class'=>'form-control', 'placeholder' => 'Email']) !!}
                                 </div><!--form-group-->
 
                                 <div class="form-group">
                                     <div class="form_select_common select_common">
-                                        {!! Form::select('connect_with', [''=>'Choose a Connect With']+Config::get('constants.CONNECT_WITH'), null, ['class'=>'option-select', 'id'=>'connect_with']) !!}
+                                        {!! Form::select('country_id', [''=>'Choose a Country']+$countries->pluck('title', 'id')->all(), null, ['class'=>'option-select', 'id'=>'country_id']) !!}
                                     </div>
                                 </div><!--form-group-->
 
                                 <div class="form-group">
-                                    <div class="label_tittle">Gender :</div>
-                                    <div class="gn_block">
-                                        <div class="rd_check radio_check2">
-                                            <input name="gender" id="gd_1" value="male" type="radio" checked="">
-                                            <label for="gd_1">Male</label>
-                                        </div>
-                                        <div class="rd_check radio_check2">
-                                            <input name="gender" id="gd_2" value="female" type="radio">
-                                            <label for="gd_2">Female</label>
+                                    {!! Form::text('postal_code', null, ['class'=>'form-control', 'placeholder' => 'Zip code / Postal Code']) !!}
+                                </div><!--form-group-->
+
+                                <div class="form-group bootstrap-timepicker">
+                                    {!! Form::text('dob', null, ['class'=>'form-control dob_input', 'id' => 'dob', 'placeholder' => 'Date Of Birth ( YYYY-MM-DD )', 'autocomplete' => 'off']) !!}
+                                </div><!--form-group-->
+
+                                <div class="form-group">
+                                    <div class="cn_group">
+                                        <div class="cn_label">Most connected period to your Childhhod :</div>
+                                        <div class="form_select_common select_common">
+                                            {!! Form::select('connected_period', [''=>'Which Decade?']+Config::get('constants.CONNECTED_PERIODS'), null, ['class'=>'option-select', 'id'=>'connected_period']) !!}
                                         </div>
                                     </div>
+                                </div><!--form-group-->
+
+                                <div class="form-group">
+                                    {!! Form::password('password', ['class'=>'form-control', 'placeholder' => 'Password']) !!}
+                                </div><!--form-group-->
+
+                                <div class="form-group">
+                                    {!! Form::password('password_confirmation', ['class'=>'form-control', 'placeholder' => 'Confirm Password']) !!}
                                 </div><!--form-group-->
 
                                 <div class="form-group">
@@ -651,6 +647,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 {!! Form::close() !!}
                             </div><!--end modal-left-->
                         </div>

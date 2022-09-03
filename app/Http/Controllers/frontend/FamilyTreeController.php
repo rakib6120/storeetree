@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\frontend;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Relation;
 use App\Models\FamilyTree;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Config;
 
 class FamilyTreeController extends BaseController
@@ -195,51 +198,24 @@ class FamilyTreeController extends BaseController
      */
     public function store(Request $request)
     {
-        $rules = [
-            'relation_first_name' => 'required|string|max:255',
-            'relation_last_name' => 'required|string|max:255',
-            'relation_id'     => 'required',
-            'connect_with'  => 'required',
-            'relation_dob'  => 'required',
-            'gender' => 'required',
-        ];
+        $request->validate([
+            'first_name'       => 'required|string|max:255',
+            'last_name'        => 'required|string|max:255',
+            'email'            => "required|email|unique:users,email",
+            'password'         => 'required|min:6|confirmed',
+            'country_id'       => 'required',
+            'postal_code'      => 'required',
+            'dob'              => 'required',
+            'connected_period' => 'required',
+            'relation_id'      => 'required|integer'
+        ]);
 
-        $messages = [
-//            'title.required' => 'Title is required',
-        ];
-
-        $this->validate($request, $rules, $messages);
-        
-        $input = [];
-        $input['first_name'] = $request->get('relation_first_name');
-        $input['last_name'] = $request->get('relation_last_name');
-        $input['relation_id'] = $request->get('relation_id');
-        $input['dob'] = Carbon::createFromFormat('m-d-Y', $request->get('relation_dob'))->format('Y-m-d');
-        $input['connect_with'] = $request->get('connect_with');
-        $input['gender'] = $request->get('gender');
-
-        if($request->get('relation_id') == 20) {
-            $input['spouse_id'] = $request->get('son_id');
-            $tree = FamilyTree::find($request->get('son_id'));
-        }
-
-        if($request->get('relation_id') == 22) {
-            $input['spouse_id'] = $request->get('daughter_id');
-            $tree = FamilyTree::find($request->get('daughter_id'));
-        }
-
-        if($request->get('relation_id') == 24 || $request->get('relation_id') == 25) {
-            $input['parent_id'] = $request->get('parent_id');
-        }
-
-        $input['user_id'] = auth()->user()->id;
-        $family_trees = FamilyTree::create($input);
-
-        if($request->get('relation_id') == 20 || $request->get('relation_id') == 22) {
-            $tree->update([
-                'spouse_id' => $family_trees->id
-            ]);
-        }
+        $input             = $request->except('_token', 'relation_id', 'password_confirmation');
+        $input['password'] = bcrypt($request->get('password'));
+        $input['dob']      = Carbon::createFromFormat('m-d-Y', $request->get('dob'))->format('Y-m-d');
+        $input['status']   = 1;
+        $user              = User::create($input);
+        Auth::user()->relations()->attach($user, ['relation' => Config::get("constants.RELATIONS.{$request->relation_id}")]);
 
         return response()->json(
             [
