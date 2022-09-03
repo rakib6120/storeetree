@@ -69,8 +69,14 @@
 </div><!--step_section-->
 
 <div class="video_content">
-        
     <div class="container">
+		<div class="row">
+          	<div class="col-xs-12">
+              	<div class="pp_top_section">
+                    <p>When ready, click the play button to record your answer. Hit stop and review to check your video. When you are satisfied, hit ACCEPT to go on to the next question.</p>
+            	</div>
+       		</div>
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="rc_tittle_section">

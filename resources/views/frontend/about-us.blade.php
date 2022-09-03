@@ -78,9 +78,37 @@
             </div>
         </div>
     </div><!--charity_section-->
-
-    @include('frontend.include.clients')
-
+    
+	<div class="testimonial_section" style="background-image:url({{ URL::to('/') }}/images/frontend/slider_photo.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="testimonial_tittle"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="testimonial_slider">
+                        <div id="banner-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item active" > 
+                                    <div class="testimonial_wrapper">
+                                        <div class="testimonial_single">
+                                            <div class="testimonial_content">
+                                                <p>It's what you learn after you know it.</p>
+                                                <h4>John Wooden</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--testimonial_slider-->
+                </div>
+            </div>
+        </div>
+    </div><!--testimonial_section-->
+	
 </div><!--content-->
 
 @endsection

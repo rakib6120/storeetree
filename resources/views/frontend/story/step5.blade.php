@@ -69,8 +69,15 @@
 </div><!--step_section-->
 
 <div class="video_content">
-        
     <div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="pp_top_section">
+					<h2>Congratulations!</h2>
+					<p>You have finished recording. Please check over all the videos and click ACCEPT ALL VIDEOS when you are ready to proceed to the next step.</p>
+				</div>
+			</div>
+		</div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="rc_tittle_section">

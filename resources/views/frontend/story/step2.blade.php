@@ -103,6 +103,7 @@
                 <div class="col-xs-12 padding_cs_1">
                     <div class="step_bottom_section">
                         <div class="step_next"><button type="submit" disabled="disabled" name="" class="step_next_btn" >Next</button></div><!--step_next-->
+                        <div class="step_back"><button type="back" name="" class="step_next_btn" >Back</button></div><!--step_back-->
                     </div><!--step_bottom_section-->
                 </div>
             </div>
