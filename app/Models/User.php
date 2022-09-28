@@ -7,7 +7,6 @@ use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -19,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'first_name', 'last_name', 'country_id', 'postal_code', 'dob', 'connected_period', 'email', 'password', 'email_verified_at', 'status', 'admin_id',
+        'first_name', 'last_name', 'country_id', 'postal_code', 'dob', 'connected_period', 'email', 'password', 'email_verified_at', 'status', 'admin_id','gender'
     ];
     
     public $sortable = ['id', 'first_name', 'last_name', 'email', 'created_at', 'updated_at', 'country_id', 'connected_period', 'dob', 'postal_code', 'status'];
@@ -69,15 +68,5 @@ class User extends Authenticatable
 
     public function stories() {
         return $this->hasMany(Story::class);
-    }
-
-    /**
-     * The roles that belong to the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function relations(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, "users_relations", 'user_id', 'relation_to')->withPivot(['relation']);
     }
 }

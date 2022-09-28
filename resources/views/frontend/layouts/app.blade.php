@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         @yield('title')
-
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png')}}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/bootstrap.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/frontend/owl.carousel.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('css/backend/plugins/datepicker/datepicker3.css') }}"/>
@@ -199,14 +199,35 @@
 
                                         <div class="form-group">
                                             <div class="form_select_common select_common">
+                                                <select class="option-select" required name="gender">
+                                                    <option value="">--Select Gender--</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other not identified here">Other not identified here</option>
+                                                    <option value="Prefer not to answer">Prefer not to answer</option>
+                                                </select>
+                                            </div>
+                                        </div><!--form-group-->
+
+                                        <div class="form-group">
+                                            <div class="form_select_common select_common">
+                                            {{--   
                                                 {!! Form::select('country_id', [''=>'Choose a Country']+$countries->pluck('title', 'id')->all(), null, ['class'=>'option-select', 'id'=>'country_id']) !!}
+                                            --}}
+                                                <select class="option-select" id="country_id" name="country_id">
+                                                    <option  value="">Choose a Country</option>
+                                            @php($countryList=App\Models\Country::orderBy('id','asc')->get())
+                                                @foreach($countryList as $key=>$countryInfo)
+                                                    <option  value="{{$countryInfo->id}}">{{$countryInfo->title}}</option>
+                                                @endforeach
+                                                </select>
                                             </div>
                                         </div><!--form-group-->
                                         <div class="form-group">
                                             {!! Form::text('postal_code', null, ['class'=>'form-control', 'placeholder' => 'Zip code / Postal Code']) !!}
                                         </div><!--form-group-->
                                         <div class="form-group bootstrap-timepicker">
-                                            {!! Form::text('dob', null, ['class'=>'form-control dob_input', 'id' => 'dob', 'placeholder' => 'Date Of Birth ( YYYY-MM-DD )', 'autocomplete' => 'off']) !!}
+                                            {!! Form::text('dob', null, ['class'=>'form-control dob_input', 'id' => 'dob', 'placeholder' => 'Date Of Birth (MM/DD/YYYY)', 'autocomplete' => 'off']) !!}
                                         </div><!--form-group-->
                                         <div class="form-group">
                                             <div class="cn_group">
@@ -236,18 +257,8 @@
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-primary btn_signup" value="SIGN UP">
                                         </div><!--form-group-->
-
-
                                         {!! Form::close() !!}
-                                        <div class="or">OR Sign In With</div>
                                     </div><!--end modal-left-->
-
-                                    <div class="modal-social_login">
-                                        <ul>
-                                            <li><a href="#"><img src="{{ URL::to('/') }}/images/frontend/sn_fb.png" alt="" /></a></li>
-                                            <li><a href="#"><img src="{{ URL::to('/') }}/images/frontend/cn_google.png" alt="" /></a></li>
-                                        </ul>
-                                    </div><!--end social_login-->
                                 </div>
                             </div>
                         </div>
@@ -306,15 +317,7 @@
                                         </div><!--form-group-->
 
                                         {!! Form::close() !!}
-                                        <div class="or">OR Login With</div>
                                     </div><!--end modal-left-->
-
-                                    <div class="modal-social_login">
-                                        <ul>
-                                            <li><a href="#"><img src="{{ URL::to('/') }}/images/frontend/sn_fb.png" alt="" /></a></li>
-                                            <li><a href="#"><img src="{{ URL::to('/') }}/images/frontend/cn_google.png" alt="" /></a></li>
-                                        </ul>
-                                    </div><!--end social_login-->
                                 </div>
                             </div>
                         </div>
@@ -409,7 +412,7 @@
         <script type="text/javascript">
             $('#dob').datepicker({
                 autoclose: true,
-                format: 'mm-dd-yyyy'
+                format: 'mm/dd/yyyy'
             });
 
             function checkRegistrationValid() {

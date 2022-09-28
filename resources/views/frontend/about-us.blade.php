@@ -14,7 +14,33 @@
     <div class="company_info">
         <div class="company_info_iner">
             <h2>Company story</h2>
+			<p>StoreeTree is an awesome step by step video platform to capture and share your amazing life memories
+and stories. We’re passionate about connecting families, friends and generations to come – your stories
+in your words, voice and tone. We believe heritage grounds up and at StoreeTree, MEMORIES LIVE
+HERE! Join now and start sharing your story today.</p>
+<p></p>
+<p>She was a unique, spunky, great lady. I remember, every time I saw her I first ask – how are you
+grandma? She always answered the same: “Of course I am fine – I have a roof over my head, I eat 3
+meals a day, and the people I love, still remember me.”</p>
+<div class="common_btn gap_btn_2">
+    <a onclick="companyStoryModal()" href="#"   data-toggle="modal" data-target="#companyStoryModal" >Read More</a>
+</div>
+                <span id="dots"></span><span id="more">
+                            <p>Heroes Welcome, a subgroup of the HFN, orchestrates an inspiring welcome for these heroes as they get off the plane in DC. In some cases, they can arrange for a similar welcome for their return flight too.  </p>
+                            <p>The primary focus of HFN is on veterans with terminal illnesses, especially WWII veterans. As time progresses, the focus will shift to veterans of Korea, then Vietnam, and so on. In the 46 states participating, there are anywhere from one to nine airport “hubs”, where these flights are scheduled.</p>
+
+                            <h3>Meals on Wheels America (MWA)</h3>
+                            <p>With over 5,000 independently run (not government financed) local chapters across the U.S., meals can be delivered to anyone who qualifies, for a very moderate fee. At least 18% of U.S. seniors have trouble obtaining or preparing the food they need, so there is a great need for this service.</p>
+                            <p>The food is catered to each senior’s dietary requirements and is delivered on the days he or she chooses.  Of course, food is essential to the recipient’s well-being, but MWA’s motto states their service is “more than just a meal.” For one thing, this service often enables seniors to continue living in their own homes instead of entering a facility. Meals on Wheels is good for both their self-esteem, their pocketbooks, and the community.</p>
+                            <h3>American Association of Retired People (AARP)</h3>
+                            <p>The AARP is one of the largest non-governmental organizations that help individuals 50 years or older. It offers many services for elderly people including financial assistance, caregiving, health-related services, social activities, special needs, technological training, and more.</p>
+                            <h3>Give Kids the World Village</h3>
+                            <p>Give Kids The World Village is an 89-acre nonprofit resort in Kissimmee, Florida that provides critically ill children and their families with week-long wish vacations at no cost. More than 30,000 children in the U.S. are diagnosed with a critical illness each year, and half of the children eligible for a wish choose to visit Central Florida and its theme parks.  The Give Kids the World Village helps these children have a place to stay while their wish is being fulfilled. </p>
+
+                            
+
         </div><!-- end company_info_iner-->
+
     </div><!-- end company_info-->
     <div class="common_section story_section">
         <div class="container-fluid">
@@ -68,7 +94,7 @@
                             <p>Give Kids The World Village is an 89-acre nonprofit resort in Kissimmee, Florida that provides critically ill children and their families with week-long wish vacations at no cost. More than 30,000 children in the U.S. are diagnosed with a critical illness each year, and half of the children eligible for a wish choose to visit Central Florida and its theme parks.  The Give Kids the World Village helps these children have a place to stay while their wish is being fulfilled. </p>
 
                     </div>
-                    <div class="common_btn gap_btn_2"><a onclick="myFunction()" href="javascript:void(0);" id="myBtn">Read More</a></div>
+                    <div class="common_btn gap_btn_2"><a onclick="charityModal()" href="#" id="myBtn"  data-toggle="modal" data-target="#charityModal" >Read More</a></div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="block_photo_single">
@@ -111,4 +137,162 @@
 	
 </div><!--content-->
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="modal fade " id="charityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="charityContent"></div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade " id="companyStoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="companyStory"></div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+ -->
+
+
+
+
+
+
+
+<div class="modal fade modal-vcenter signIn_commonn" id="companyStoryModal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="modal_tittle">
+                                    <h2>Company story</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>StoreeTree is an awesome step by step video platform to capture and share your amazing life memories
+                                and stories. We’re passionate about connecting families, friends and generations to come – your stories
+                                in your words, voice and tone. We believe heritage grounds up and at StoreeTree, MEMORIES LIVE
+                                HERE! Join now and start sharing your story today.</p>
+                                <p></p>
+                                <p>She was a unique, spunky, great lady. I remember, every time I saw her I first ask – how are you
+                                grandma? She always answered the same: “Of course I am fine – I have a roof over my head, I eat 3
+                                meals a day, and the people I love, still remember me.”</p>
+
+                            <p>Heroes Welcome, a subgroup of the HFN, orchestrates an inspiring welcome for these heroes as they get off the plane in DC. In some cases, they can arrange for a similar welcome for their return flight too.  </p>
+                            <p>The primary focus of HFN is on veterans with terminal illnesses, especially WWII veterans. As time progresses, the focus will shift to veterans of Korea, then Vietnam, and so on. In the 46 states participating, there are anywhere from one to nine airport “hubs”, where these flights are scheduled.</p>
+
+                            <h3>Meals on Wheels America (MWA)</h3>
+                            <p>With over 5,000 independently run (not government financed) local chapters across the U.S., meals can be delivered to anyone who qualifies, for a very moderate fee. At least 18% of U.S. seniors have trouble obtaining or preparing the food they need, so there is a great need for this service.</p>
+                            <p>The food is catered to each senior’s dietary requirements and is delivered on the days he or she chooses.  Of course, food is essential to the recipient’s well-being, but MWA’s motto states their service is “more than just a meal.” For one thing, this service often enables seniors to continue living in their own homes instead of entering a facility. Meals on Wheels is good for both their self-esteem, their pocketbooks, and the community.</p>
+                            <h3>American Association of Retired People (AARP)</h3>
+                            <p>The AARP is one of the largest non-governmental organizations that help individuals 50 years or older. It offers many services for elderly people including financial assistance, caregiving, health-related services, social activities, special needs, technological training, and more.</p>
+                            <h3>Give Kids the World Village</h3>
+                            <p>Give Kids The World Village is an 89-acre nonprofit resort in Kissimmee, Florida that provides critically ill children and their families with week-long wish vacations at no cost. More than 30,000 children in the U.S. are diagnosed with a critical illness each year, and half of the children eligible for a wish choose to visit Central Florida and its theme parks.  The Give Kids the World Village helps these children have a place to stay while their wish is being fulfilled. </p>
+                            </div>
+                        </div>
+                       
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade modal-vcenter signIn_commonn" id="charityModal" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="modal_tittle">
+                                    <h2>Charities we support</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                 <h3>Giving is in our DNA</h3>
+                               <p>We started StoreeTree as an opportunity to give back and help people tell their personal stories for friends, family, and generations to come. Because of passion for helping,  we will be donating a percentage of all sales go to charity. As customers, you have the freedom to choose what charity your purchase will support. Please click the box when you checkout for the charity that most resonates with you. Below are the charities we currently support.</p>
+
+                                <h3>Honor Flight Network (HFN)</h3>
+                                <p>Earl Morse and Jeff Miller, who co-founded the Honor Flight Network, were inspired by their respect for veterans. They wanted to provide vets the opportunity for closure, if possible. Since 2005, this network has flown thousands of veterans to Washington D.C., free of charge. On their trip, they can view the memorial commemorating the war they fought in. There are even volunteer guardians who escort the veterans around the city.</p>
+                               
+                                    <p>Heroes Welcome, a subgroup of the HFN, orchestrates an inspiring welcome for these heroes as they get off the plane in DC. In some cases, they can arrange for a similar welcome for their return flight too.  </p>
+                                    <p>The primary focus of HFN is on veterans with terminal illnesses, especially WWII veterans. As time progresses, the focus will shift to veterans of Korea, then Vietnam, and so on. In the 46 states participating, there are anywhere from one to nine airport “hubs”, where these flights are scheduled.</p>
+
+                                    <h3>Meals on Wheels America (MWA)</h3>
+                                    <p>With over 5,000 independently run (not government financed) local chapters across the U.S., meals can be delivered to anyone who qualifies, for a very moderate fee. At least 18% of U.S. seniors have trouble obtaining or preparing the food they need, so there is a great need for this service.</p>
+                                    <p>The food is catered to each senior’s dietary requirements and is delivered on the days he or she chooses.  Of course, food is essential to the recipient’s well-being, but MWA’s motto states their service is “more than just a meal.” For one thing, this service often enables seniors to continue living in their own homes instead of entering a facility. Meals on Wheels is good for both their self-esteem, their pocketbooks, and the community.</p>
+                                    <h3>American Association of Retired People (AARP)</h3>
+                                    <p>The AARP is one of the largest non-governmental organizations that help individuals 50 years or older. It offers many services for elderly people including financial assistance, caregiving, health-related services, social activities, special needs, technological training, and more.</p>
+                                    <h3>Give Kids the World Village</h3>
+                                    <p>Give Kids The World Village is an 89-acre nonprofit resort in Kissimmee, Florida that provides critically ill children and their families with week-long wish vacations at no cost. More than 30,000 children in the U.S. are diagnosed with a critical illness each year, and half of the children eligible for a wish choose to visit Central Florida and its theme parks.  The Give Kids the World Village helps these children have a place to stay while their wish is being fulfilled. </p>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+function charityModal() {
+    var content=$(".charity_content").html();
+    // console.dir(content);
+    $("#charityContent").html(content);
+}
+
+function companyStoryModal() {
+    var content=$(".company_info_iner").html();
+    // console.dir(content);
+    $("#companyStory").html(content);
+    $("#companyStory .common_btn").remove();
+
+}
+</script>
 @endsection

@@ -69,6 +69,7 @@ Route::group(['namespace' => 'frontend'], function() {
 
     Route::middleware(['auth'])->group(function () {
         Route::get('profile', 'ProfileController@index')->name('profile');
+        Route::post('profile/update', 'ProfileController@updateProfile')->name('profile.update');
         Route::get('create-your-story/step-4', 'CreateStoryController@step4')->name('create-your-story.step-4');
         Route::post('upload/video', 'VideoRecordingController@store')->name('video.store');
         Route::get('create-your-story/step-4/{id}', 'CreateStoryController@step4Preview')->name('create-your-story.step-4.show');

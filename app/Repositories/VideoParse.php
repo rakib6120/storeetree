@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use App\Models\FamilyTree;
 
 class VideoParse
 {
@@ -53,7 +54,14 @@ class VideoParse
     public static function getAudioMusic()
     {
         $files = Storage::disk('public')->files('audio');
-        return Storage::disk('public')->path($files[array_rand($files)]);
+        $family_tree = FamilyTree::with('user')->find(Auth::user()->id);
+        $connect_with = $family_tree->connect_with;
+
+        $audio_index = array_search("audio/".$connect_with.".mp3", $files);
+
+        $audio = Storage::disk('public')->path($files[$audio_index]);
+
+        return $audio;
     }
 
     public static function mergeVideo(array $mergeableVideos)

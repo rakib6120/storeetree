@@ -182,12 +182,12 @@
 
         $('#from').datepicker({
             autoclose: true,
-            format: 'yyyy-mm-dd'
+            format: 'mm/dd/yyyy'
         });
 
         $('#to').datepicker({
             autoclose: true,
-            format: 'yyyy-mm-dd'
+            format: 'mm/dd/yyyy'
         });
     });
 

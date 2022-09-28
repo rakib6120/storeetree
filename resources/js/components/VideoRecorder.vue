@@ -219,11 +219,11 @@ export default {
             this.player.record().pause();
         },
         stopRecording() {
-            this.isSaveDisabled = true;
-            this.isStartRecording = true;
-            this.isResumeDisabled = true;
-            this.isPauseDisabled = true;
-            this.player.record().stop();
+                this.isSaveDisabled = true;
+                this.isStartRecording = true;
+                this.isResumeDisabled = true;
+                this.isPauseDisabled = true;
+                this.player.record().stop();
         },
         retakeVideo() {
             this.isSaveDisabled   = true;

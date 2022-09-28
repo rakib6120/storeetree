@@ -66,7 +66,10 @@
                     <div class="story_wrapper sd_height2">
                         <div class="story_block">
                             <h2>About Us</h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap.</p>
+                            <p>StoreeTree is an awesome step by step video platform to capture and share your amazing life memories
+and stories. We’re passionate about connecting families, friends and generations to come – your stories
+in your words, voice and tone. We believe heritage grounds up and at StoreeTree, MEMORIES LIVE
+HERE! Join now and start sharing your story today.</p>
 
                             <div class="common_btn"><a href="{{ route('about-us') }}">Read More</a></div>
                         </div><!--story_block-->

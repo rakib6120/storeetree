@@ -101,7 +101,7 @@
                         </div><!--plan_dsp-->
                         <div class="plan_select_option">
                             <div class="radio_check">
-                                <input name="plan" id="plan_1" type="radio" value="1" checked="">
+                                <input name="plan" id="plan_1" type="radio" value="1">
                                 <label for="plan_1">Select this Plan</label>
                             </div>
                         </div><!--plan_select_option-->
@@ -159,7 +159,7 @@
             <div class="row">
                 <div class="col-xs-12 padding_cs_1">
                     <div class="step_bottom_section">
-                        <div class="step_next"><button type="submit" name="" class="step_next_btn" >Next</button></div><!--step_next-->
+                        <div class="step_next"><button type="submit" style="display: none" >Next</button></div><!--step_next-->
                     </div><!--step_bottom_section-->
                 </div>
             </div>
@@ -168,4 +168,14 @@
     </div><!--common_section-->
 </div><!--content-->
 
+@endsection
+
+@section('scripts')
+    <script>
+		$(window).on("load", function(){
+        	$('input[name="plan"]').change(function(input){
+            	$('button[type="submit"]')[0].click();
+            });
+    	});
+    </script>
 @endsection

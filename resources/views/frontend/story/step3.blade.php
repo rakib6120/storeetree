@@ -87,7 +87,7 @@
                             @foreach($warmups as $warmup)
                             <li>
                                 <div class="av_check">
-                                    <input name="warmups[]" value="{{ $warmup->id }}" id="st_{{ $warmup->id }}" type="checkbox" class="question-check" onchange="QuestionPlanCheck()" @if(isset($cart['warmups'])) @if(in_array($warmup->id, $cart['warmups'])) checked @endif @endif>
+                                    <input name="warmups[]" value="{{ $warmup->id }}" id="st_{{$warmup->id}}" type="checkbox" class="question-check" onchange="QuestionPlanCheck('{{$warmup->id}}')" @if(isset($cart['warmups'])) @if(in_array($warmup->id, $cart['warmups'])) checked @endif @endif>
                                     <label for="st_{{ $warmup->id }}">{{ $warmup->title }}</label>
                                 </div>
                             </li>
@@ -117,18 +117,30 @@
 @endsection
 
 @section('scripts')
+<script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+<link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
+<script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+
 <script type="text/javascript">
-    function QuestionPlanCheck() {
+    function QuestionPlanCheck(id) {
         var length = $(".question-check:checked").length;
-        if (length >= 1) {
+        if (length == 3) {
             $('.step_next_btn').attr('disabled', false);
         } else {
-            $('.step_next_btn').attr('disabled', true);
+            if(length>3){
+                Swal.fire("You Can't Choose More Than 3 Items.");
+                if($('#st_'+id).is(':checked'))
+                    $('#st_'+id).attr('checked',false);
+                $('.step_next_btn').attr('disabled', false);
+            }
+            else{
+                $('.step_next_btn').attr('disabled', true);
+            }  
         }
     }
     $(window).on("load",function(){
         var length = $(".question-check:checked").length;
-        if (length >= 1) {
+        if (length ==3) {
             $('.step_next_btn').attr('disabled', false);
         } else {
             $('.step_next_btn').attr('disabled', true);

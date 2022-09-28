@@ -168,6 +168,7 @@ return [
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
         'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class,
+
     ],
 
 ];

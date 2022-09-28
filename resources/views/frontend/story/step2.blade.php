@@ -88,7 +88,7 @@
                             @foreach($category->questions->where('status', 1) as $question)
                             <li>
                                 <div class="av_check">
-                                    <input name="questions[]" value="{{ $question->id }}" id="ct1_{{ $question->id }}" type="checkbox" class="question-check" onchange="QuestionPlanCheck()" @if(isset($cart['questions'])) @if(in_array($question->id, $cart['questions'])) checked @endif @endif>
+                                    <input name="questions[]" value="{{ $question->id }}" id="ct1_{{ $question->id }}" type="checkbox" class="question-check" onchange="QuestionPlanCheck('{{ $question->id }}')" @if(isset($cart['questions'])) @if(in_array($question->id, $cart['questions'])) checked @endif @endif>
                                     <label for="ct1_{{ $question->id }}">{{ $question->title }}</label>
                                 </div>
                             </li>
@@ -103,7 +103,7 @@
                 <div class="col-xs-12 padding_cs_1">
                     <div class="step_bottom_section">
                         <div class="step_next"><button type="submit" disabled="disabled" name="" class="step_next_btn" >Next</button></div><!--step_next-->
-                        <div class="step_back"><button type="back" name="" class="step_next_btn" >Back</button></div><!--step_back-->
+                        <div class="common_btn" style="display: contents"><a href="{{ route('create-your-story.step-1') }}">Back</a></div><!--step_back-->
                     </div><!--step_bottom_section-->
                 </div>
             </div>
@@ -117,15 +117,27 @@
 @endsection
 
 @section('scripts')
+
+<script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+<link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
+<script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+
+
 <script type="text/javascript">
-    function QuestionPlanCheck() {
+    function QuestionPlanCheck(id) {
         var length = $(".question-check:checked").length;
+        if(length >{{ config('constants.PLAN_NO_OF_QUESTIONS')[$cart['plan']] }}){
+            if($('#ct1_'+id).is(':checked'))
+                $('#ct1_'+id).attr('checked',false);
+            Swal.fire('You Have Reached Your Limit To Choose Question According To Your Plan.');
+        }
         if (length >= {{ config('constants.PLAN_NO_OF_QUESTIONS')[$cart['plan']] }}) {
-            $('.question-check:not(:checked)').attr('disabled', true);
+            // $('.question-check:not(:checked)').attr('disabled', true);
             
+ 
             $('.step_next_btn').attr('disabled', false);
         } else {
-            $('.question-check:not(:checked)').attr('disabled', false);
+            // $('.question-check:not(:checked)').attr('disabled', false);
             
             $('.step_next_btn').attr('disabled', true);
         }
@@ -133,7 +145,7 @@
     $(window).on("load",function(){
         var length = $(".question-check:checked").length;
         if (length >= {{ config('constants.PLAN_NO_OF_QUESTIONS')[$cart['plan']] }}) {
-            $('.question-check:not(:checked)').attr('disabled', true);
+            // $('.question-check:not(:checked)').attr('disabled', true);
             
             $('.step_next_btn').attr('disabled', false);
         } else {

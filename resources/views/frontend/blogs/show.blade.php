@@ -17,7 +17,6 @@
                 <div class="col-xs-12 col-sm-8 col-md-8">
                     <div class="blog_generic">
                         <h2>{{ $blog->title }}</h2>
-                        <h5><span>By {{ $blog->admin->name }}</span><span class="time_dt">{{ $blog->created_at->format('F j, Y') }}</span></h5>
                         <hr/>
                         <img src="{{ asset(Helper::storagePath($blog->thumbnail)) }}" alt="" />
                         <h3>{!! $blog->subtitle !!}</h3>
@@ -37,7 +36,6 @@
                                         <a href="{{ route('blogs.show', $recent->id) }}"><img src="{{ asset(Helper::storagePath($recent->thumbnail)) }}" alt=""/></a>
                                     </div>
                                     <div class="media-body">
-                                        <h5><span class="time_dt">{{ $recent->created_at->format('F j, Y') }}</span></h5>
                                         <p><a href="{{ route('blogs.show', $recent->id) }}">{{ $recent->title }}</a></p>
                                     </div>
                                 </div>
@@ -55,7 +53,6 @@
                                         <a href="{{ route('blogs.show', $popular->id) }}"><img src="{{ asset(Helper::storagePath($popular->thumbnail)) }}" alt=""/></a>
                                     </div>
                                     <div class="media-body">
-                                        <h5><span class="time_dt">{{ $popular->created_at->format('F j, Y') }}</span></h5>
                                         <p><a href="{{ route('blogs.show', $popular->id) }}">{{ $popular->title }}</a></p>
                                     </div>
                                 </div>

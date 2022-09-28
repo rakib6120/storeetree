@@ -40,9 +40,6 @@
                             </div><!--blog_photo_sc-->
                             @endif
                             <div class="blog_info_cn">
-                                <div class="blog_info_top">
-                                    <span>{{ $blog->created_at->format('F j, Y') }}</span>
-                                </div><!--blog_info_top-->
                                 <div class="blog_short_dsp">
                                     <h3><a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->title }}</a></h3>
                                     <p>{!! Str::limit($blog->subtitle, 80) !!}</p>

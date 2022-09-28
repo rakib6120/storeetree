@@ -14,6 +14,27 @@ class CountryTableSeeder extends Seeder {
     public function run() {
         
         Country::create([
+            'code' => 'US',
+            'title' => 'United States',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        Country::create([
+            'code' => 'GB',
+            'title' => 'United Kingdom',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        Country::create([
+            'code' => 'BD',
+            'title' => 'Bangladesh',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        Country::create([
             'code' => 'AD',
             'title' => 'Andorra',
             'created_at' => Carbon::now(),
@@ -139,12 +160,7 @@ class CountryTableSeeder extends Seeder {
             'updated_at' => Carbon::now(),
         ]);
 
-        Country::create([
-            'code' => 'BD',
-            'title' => 'Bangladesh',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        
 
         Country::create([
             'code' => 'BE',
@@ -545,12 +561,7 @@ class CountryTableSeeder extends Seeder {
             'updated_at' => Carbon::now(),
         ]);
 
-        Country::create([
-            'code' => 'GB',
-            'title' => 'United Kingdom',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        
 
         Country::create([
             'code' => 'GD',
@@ -1637,12 +1648,7 @@ class CountryTableSeeder extends Seeder {
             'updated_at' => Carbon::now(),
         ]);
 
-        Country::create([
-            'code' => 'US',
-            'title' => 'United States',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        
 
         Country::create([
             'code' => 'UY',
