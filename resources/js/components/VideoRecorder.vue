@@ -55,13 +55,6 @@
             </div>
         </div>
     </div><!--video_recorder_wrapper-->
-
-        
-    <!-- <button type="button" class="btn btn-info" @click.prevent="startRecording()" v-bind:disabled="isStartRecording" id="btnStart">Start Recording</button>
-    <button type="button" class="btn btn-info" @click.prevent="resumeRecording()" v-bind:disabled="isResumeDisabled">Resume</button>
-    <button type="button" class="btn btn-info" @click.prevent="pauseRecording()" v-bind:disabled="isPauseDisabled">Pause</button>
-    <button type="button" class="btn btn-success" @click.prevent="submitVideo()" v-bind:disabled="isSaveDisabled" id="btnSave">{{ submitText }}</button>
-    <button type="button" class="btn btn-primary" @click.prevent="retakeVideo()" v-bind:disabled="isRetakeDisabled" id="btnRetake">Retake</button> -->
 </template>
 
 <script>
@@ -204,7 +197,8 @@ export default {
                         title: 'Oops...',
                         text: "Upload Failed"
                     });
-                    this.submitText = "Upload Failed";
+                    this.submitText = "Try Again";
+                    this.isSaveDisabled = false;
                 }
             );
         },

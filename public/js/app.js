@@ -2478,6 +2478,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('video-recorder', function () {
   return __webpack_require__.e(/*! import() */ "resources_js_components_VideoRecorder_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/VideoRecorder.vue */ "./resources/js/components/VideoRecorder.vue"));
+}); // Vue.component('family-tree', () => import('./components/familyTree.vue'));
+
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('family-tree1', function () {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_familyTree1_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/familyTree1.vue */ "./resources/js/components/familyTree1.vue"));
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
   el: '#app'
@@ -16781,7 +16785,7 @@ Vue.compile = compileToFunctions;
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "resources_js_components_VideoRecorder_vue") return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_VideoRecorder_vue":1,"resources_js_components_familyTree1_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
