@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class VideoConverterJob implements ShouldQueue
@@ -66,6 +67,6 @@ class VideoConverterJob implements ShouldQueue
             'session_id' => $this->session_id,
             'data'       => ['question_id' => $this->question_id, 'video' => $video_path]
         ]);
-
+        Storage::disk('public')->delete($this->temp_video_path);
     }
 }
