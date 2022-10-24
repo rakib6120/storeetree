@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\VideoUploadActivity;
 use App\Repositories\VideoParse;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -70,10 +71,14 @@ Route::group(['namespace' => 'frontend'], function() {
     Route::middleware(['auth'])->group(function () {
         Route::get('profile', 'ProfileController@index')->name('profile');
         Route::post('profile/update', 'ProfileController@updateProfile')->name('profile.update');
-        Route::get('create-your-story/step-4', 'CreateStoryController@step4')->name('create-your-story.step-4');
+
+        Route::middleware(['setSessionVideo'])->group(function() {
+            Route::get('create-your-story/step-4', 'CreateStoryController@step4')->name('create-your-story.step-4');
+            Route::get('create-your-story/step-5', 'CreateStoryController@step5')->name('create-your-story.step-5');
+            Route::get('create-your-story/step-4/{id}', 'CreateStoryController@step4Preview')->name('create-your-story.step-4.show');
+        });
+
         Route::post('upload/video', 'VideoRecordingController@store')->name('video.store');
-        Route::get('create-your-story/step-4/{id}', 'CreateStoryController@step4Preview')->name('create-your-story.step-4.show');
-        Route::get('create-your-story/step-5', 'CreateStoryController@step5')->name('create-your-story.step-5');
 
         Route::get('story/payment','PaymentController@pay')->name('story.pay');
         Route::post('store.payment-process','PaymentController@handlePayment')->name('store.payment-process');
