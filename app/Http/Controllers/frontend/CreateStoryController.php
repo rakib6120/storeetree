@@ -166,8 +166,9 @@ class CreateStoryController extends BaseController
 
         foreach($questions as $key => $question) {
             if($storyItems) {
-                if(in_array($question->id, $storyItems->pluck('question_id')->toArray())) {
+                if($story = $storyItems->firstWhere('question_id', $question->id)) {
                     $question->class = 'qs_complete';
+                    $question->video = $story['video'];
                     $totalStoryUploaded++;
                 }
             }
@@ -203,15 +204,16 @@ class CreateStoryController extends BaseController
 
         foreach($questions as $key=>$question) {
             if($storyItems) {
-                if(in_array($question->id, $storyItems->pluck('question_id')->toArray())) {
+                if($story = $storyItems->firstWhere('question_id', $question->id)) {
                     $question->class = 'qs_complete';
+                    $question->video = $story['video'];
                 }
             }
 
             if(!$current) {
                 if($question->id == $id) {
                     $question->class = 'qs_complete qs_qurrent';
-                    $question->video = $storyItems->where('question_id', $id)->first()['video'];
+                    $question->video = $storyItems->firstWhere('question_id', $id)['video'];
                     $currentQuestion = $question;
                     $current = true;
                 }
