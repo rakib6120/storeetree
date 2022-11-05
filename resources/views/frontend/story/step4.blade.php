@@ -104,7 +104,7 @@
                                             @foreach($questions as $question)
                                                 @if ($question->class === "qs_complete" || $question->class === "qs_complete qs_qurrent")
                                                     <li class="{{ $question->class }}">
-                                                        <a href="{{ route('create-your-story.step-4.show', $question->id) }}" class="bookmark-fill">{{ $question->title }}</a>
+                                                        <a href="{{ route('create-your-story.step-4.show', $question->id) }}" class="bookmark-fill">{{ $question->title }} @if (!$question->video) <span><img style="width: 30px; height: 30px;" src="{{ asset('images/frontend/spinner.gif') }}" alt=""></span> @endif </a>
                                                     </li>
                                                     @continue
                                                 @elseif($next)
